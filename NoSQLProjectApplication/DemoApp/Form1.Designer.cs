@@ -29,34 +29,89 @@ namespace DemoApp
         /// </summary>
         private void InitializeComponent()
         {
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.buttonLogin = new System.Windows.Forms.Button();
+            this.buttonDashboard = new System.Windows.Forms.Button();
+            this.buttonViewHisOwnTicket = new System.Windows.Forms.Button();
+            this.buttonAddIncident = new System.Windows.Forms.Button();
+            this.labelTemporaryForm = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // listBox1
+            // buttonLogin
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(12, 12);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(417, 225);
-            this.listBox1.TabIndex = 0;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.buttonLogin.Location = new System.Drawing.Point(72, 78);
+            this.buttonLogin.Name = "buttonLogin";
+            this.buttonLogin.Size = new System.Drawing.Size(146, 23);
+            this.buttonLogin.TabIndex = 0;
+            this.buttonLogin.Text = "Login";
+            this.buttonLogin.UseVisualStyleBackColor = true;
+            this.buttonLogin.Click += new System.EventHandler(this.buttonLogin_Click);
+            // 
+            // buttonDashboard
+            // 
+            this.buttonDashboard.Location = new System.Drawing.Point(72, 107);
+            this.buttonDashboard.Name = "buttonDashboard";
+            this.buttonDashboard.Size = new System.Drawing.Size(146, 23);
+            this.buttonDashboard.TabIndex = 1;
+            this.buttonDashboard.Text = "Dashboard";
+            this.buttonDashboard.UseVisualStyleBackColor = true;
+            this.buttonDashboard.Click += new System.EventHandler(this.buttonDashboard_Click);
+            // 
+            // buttonViewHisOwnTicket
+            // 
+            this.buttonViewHisOwnTicket.Location = new System.Drawing.Point(72, 136);
+            this.buttonViewHisOwnTicket.Name = "buttonViewHisOwnTicket";
+            this.buttonViewHisOwnTicket.Size = new System.Drawing.Size(146, 23);
+            this.buttonViewHisOwnTicket.TabIndex = 2;
+            this.buttonViewHisOwnTicket.Text = "View his own ticket";
+            this.buttonViewHisOwnTicket.UseVisualStyleBackColor = true;
+            this.buttonViewHisOwnTicket.Click += new System.EventHandler(this.buttonViewHisOwnTicket_Click);
+            // 
+            // buttonAddIncident
+            // 
+            this.buttonAddIncident.Location = new System.Drawing.Point(72, 165);
+            this.buttonAddIncident.Name = "buttonAddIncident";
+            this.buttonAddIncident.Size = new System.Drawing.Size(146, 23);
+            this.buttonAddIncident.TabIndex = 3;
+            this.buttonAddIncident.Text = "Add Incident";
+            this.buttonAddIncident.UseVisualStyleBackColor = true;
+            this.buttonAddIncident.Click += new System.EventHandler(this.buttonAddIncident_Click);
+            // 
+            // labelTemporaryForm
+            // 
+            this.labelTemporaryForm.AutoSize = true;
+            this.labelTemporaryForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTemporaryForm.Location = new System.Drawing.Point(50, 32);
+            this.labelTemporaryForm.Name = "labelTemporaryForm";
+            this.labelTemporaryForm.Size = new System.Drawing.Size(185, 29);
+            this.labelTemporaryForm.TabIndex = 4;
+            this.labelTemporaryForm.Text = "Temporary form";
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(445, 250);
-            this.Controls.Add(this.listBox1);
+            this.ClientSize = new System.Drawing.Size(280, 235);
+            this.Controls.Add(this.labelTemporaryForm);
+            this.Controls.Add(this.buttonAddIncident);
+            this.Controls.Add(this.buttonViewHisOwnTicket);
+            this.Controls.Add(this.buttonDashboard);
+            this.Controls.Add(this.buttonLogin);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Button buttonLogin;
+        private System.Windows.Forms.Button buttonDashboard;
+        private System.Windows.Forms.Button buttonViewHisOwnTicket;
+        private System.Windows.Forms.Button buttonAddIncident;
+        private System.Windows.Forms.Label labelTemporaryForm;
     }
 }
 
