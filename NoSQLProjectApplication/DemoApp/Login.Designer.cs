@@ -35,10 +35,12 @@
             this.textBox_password = new System.Windows.Forms.TextBox();
             this.TheGardenGroup_Logo = new System.Windows.Forms.PictureBox();
             this.label_welcome = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox_background = new System.Windows.Forms.PictureBox();
             this.button_login = new System.Windows.Forms.Button();
+            this.label_login = new System.Windows.Forms.Label();
+            this.label_forgotPassword = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.TheGardenGroup_Logo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_background)).BeginInit();
             this.SuspendLayout();
             // 
             // label_username
@@ -98,14 +100,14 @@
             this.label_welcome.TabIndex = 5;
             this.label_welcome.Text = "Welcome";
             // 
-            // pictureBox1
+            // pictureBox_background
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Honeydew;
-            this.pictureBox1.Location = new System.Drawing.Point(136, 192);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(309, 263);
-            this.pictureBox1.TabIndex = 6;
-            this.pictureBox1.TabStop = false;
+            this.pictureBox_background.BackColor = System.Drawing.Color.Honeydew;
+            this.pictureBox_background.Location = new System.Drawing.Point(136, 192);
+            this.pictureBox_background.Name = "pictureBox_background";
+            this.pictureBox_background.Size = new System.Drawing.Size(309, 263);
+            this.pictureBox_background.TabIndex = 6;
+            this.pictureBox_background.TabStop = false;
             // 
             // button_login
             // 
@@ -118,12 +120,36 @@
             this.button_login.Text = "Login";
             this.button_login.UseVisualStyleBackColor = false;
             // 
+            // label_login
+            // 
+            this.label_login.AutoSize = true;
+            this.label_login.BackColor = System.Drawing.Color.Honeydew;
+            this.label_login.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_login.Location = new System.Drawing.Point(251, 205);
+            this.label_login.Name = "label_login";
+            this.label_login.Size = new System.Drawing.Size(87, 29);
+            this.label_login.TabIndex = 8;
+            this.label_login.Text = "LOGIN";
+            // 
+            // label_forgotPassword
+            // 
+            this.label_forgotPassword.AutoSize = true;
+            this.label_forgotPassword.Font = new System.Drawing.Font("Calibri", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_forgotPassword.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label_forgotPassword.Location = new System.Drawing.Point(210, 506);
+            this.label_forgotPassword.Name = "label_forgotPassword";
+            this.label_forgotPassword.Size = new System.Drawing.Size(187, 24);
+            this.label_forgotPassword.TabIndex = 9;
+            this.label_forgotPassword.Text = "I forgot my password";
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(613, 597);
+            this.Controls.Add(this.label_forgotPassword);
+            this.Controls.Add(this.label_login);
             this.Controls.Add(this.button_login);
             this.Controls.Add(this.label_welcome);
             this.Controls.Add(this.TheGardenGroup_Logo);
@@ -131,11 +157,11 @@
             this.Controls.Add(this.textBox_username);
             this.Controls.Add(this.label_password);
             this.Controls.Add(this.label_username);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.pictureBox_background);
             this.Name = "Login";
             this.Text = "Login";
             ((System.ComponentModel.ISupportInitialize)(this.TheGardenGroup_Logo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_background)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -149,7 +175,9 @@
         private System.Windows.Forms.TextBox textBox_password;
         private System.Windows.Forms.PictureBox TheGardenGroup_Logo;
         private System.Windows.Forms.Label label_welcome;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox_background;
         private System.Windows.Forms.Button button_login;
+        private System.Windows.Forms.Label label_login;
+        private System.Windows.Forms.Label label_forgotPassword;
     }
 }
