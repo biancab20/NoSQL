@@ -15,16 +15,16 @@ namespace DAL
             client = new MongoClient("mongodb+srv://user1:user12345@cluster0.wmykyq2.mongodb.net/");
         }
 
-        public List<Databases_Model> GetDatabases()
-        {
-            List<Databases_Model> all_databases = new List<Databases_Model>();
+        //public List<Databases_Model> GetDatabases()
+        //{
+        //    List<Databases_Model> all_databases = new List<Databases_Model>();
             
-            foreach (BsonDocument db in client.ListDatabases().ToList())
-            {
-                all_databases.Add(BsonSerializer.Deserialize<Databases_Model>(db));
-            }
-            return all_databases;
-        }
+        //    foreach (BsonDocument db in client.ListDatabases().ToList())
+        //    {
+        //        all_databases.Add(BsonSerializer.Deserialize<Databases_Model>(db));
+        //    }
+        //    return all_databases;
+        //}
     }
 
 
