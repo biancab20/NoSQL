@@ -45,5 +45,13 @@ namespace DAL
             var filter = Builders<User>.Filter.Eq(u => u.Username, username);
             return users.Find(filter).FirstOrDefault();
         }
+        public User GetUserByPassword(string password)
+        {
+            // Hash the provided passcode to match it with the stored hashed password.
+            string hashedPasscode = Hash(password);
+
+            var filter = Builders<User>.Filter.Eq(u => u.Password, hashedPasscode);
+            return users.Find(filter).FirstOrDefault();
+        }
     }
 }

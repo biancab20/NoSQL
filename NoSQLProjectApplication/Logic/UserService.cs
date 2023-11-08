@@ -37,6 +37,6 @@ namespace Logic
             return userDAO.Hash(password);
         }
         public User GetUserByUserName(string username) => userDAO.GetUserByUserName(username);
-        public User GetUserByPasscode(string password) => userDAO.GetUserByPasscode(password);
+        public User GetUserByPassword(string password) => userDAO.GetUserByPassword(password);
     }
 }

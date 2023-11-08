@@ -26,18 +26,54 @@ namespace DemoApp
 
         private void button_login_Click(object sender, EventArgs e)
         {
-            if((this.textBox_username.Text == null) || (this.textBox_password.Text == null))
+            if((this.textBox_username.Text == "") || (this.textBox_password.Text == ""))
             {
                 MessageBox.Show("Log in failed! Please enter your username and password!", "Message", MessageBoxButtons.OK);
             }
             else
             {
+                user = ValidateUserCreditentials(userService);
+                if(user != null)
+                {
+                    Form1 form = new Form1();
+                    form.ShowDialog();
+                    this.Close();
+                }
 
             }
         }
-        //User GetUser(UserService userService)
-        //{
+        
+        User ValidateUserCreditentials(UserService userService)
+        {
+            try
+            {
+                user = userService.GetUserByUserName(this.textBox_username.Text);
 
-        //}
+                if (user != null)
+                {
+                    User userByPassword = userService.GetUserByPassword(userService.Hash(this.textBox_password.Text));
+
+                    if (userByPassword != null && user.Id == userByPassword.Id)
+                    {
+                        return user;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Incorrect password. Please try again!", "Message", MessageBoxButtons.OK);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Incorrect username. Please try again!", "Message", MessageBoxButtons.OK);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("An error occurred. Please try again later.", "Message", MessageBoxButtons.OK);
+            }
+
+            return null;
+        }
     }
+    
 }
