@@ -8,15 +8,16 @@ namespace DAL
 {
     public class DAO
     {
-        private MongoClient client;
-
+        private IMongoClient client;
+        private IMongoDatabase database;
         public DAO()
         {
             client = new MongoClient("mongodb+srv://user1:user12345@cluster0.wmykyq2.mongodb.net/");
-            IMongoDatabase db = client.GetDatabase("TheGardenGroupDatabase");
-            IMongoCollection<User> userCollection = db.GetCollection<User>("User");
-            IMongoCollection<Ticket> ticketCollection = db.GetCollection<Ticket>("Ticket");
+            database = client.GetDatabase("TheGardenGroupDatabase");
+
         }
+        public IMongoCollection<User> users => database.GetCollection<User>("User");
+        public IMongoCollection<Ticket> tickets => database.GetCollection<Ticket>("Ticket");
 
     }
 

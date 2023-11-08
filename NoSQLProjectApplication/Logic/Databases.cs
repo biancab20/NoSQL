@@ -12,9 +12,5 @@ namespace Logic
             dao = new DAO();
         }
 
-        //public List<Databases_Model> Get_All_Databases()
-        //{
-        //    return dao.GetDatabases();
-        //}
     }
 }

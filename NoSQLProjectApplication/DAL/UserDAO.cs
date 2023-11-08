@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DAL;
+using MongoDB.Bson;
+using System.Security.Cryptography;
 
 namespace DAL
 {
@@ -13,9 +15,35 @@ namespace DAL
     {
         public List<User> GetAllUsers()
         {
-            var filter = Builders<User>.Filter.Empty;
-            var users = userCollection.Find(filter).ToList();
-            return users();
+            return users.Find(_ => true).ToList();
+        }
+        public void CreateUser(User user)
+        {
+            users.InsertOne(user);
+        }
+        public void UpdateUser(string userId, UpdateDefinition<User> updateDefinition)
+        {
+            var filter = Builders<User>.Filter.Eq(u => u.Id, new ObjectId(userId));
+            users.UpdateOne(filter, updateDefinition);
+        }
+        public void DeleteUser(string userId)
+        {
+            var filter = Builders<User>.Filter.Eq(u => u.Id, new ObjectId(userId));
+            users.DeleteOne(filter);
+        }
+        public string Hash(string password)
+        {
+            var sha = SHA256.Create();
+
+            var asByteArray = Encoding.Default.GetBytes(password);
+            var hashedPassword = sha.ComputeHash(asByteArray);
+
+            return Convert.ToBase64String(hashedPassword);
+        }
+        public User GetUserByUserName(string username)
+        {
+            var filter = Builders<User>.Filter.Eq(u => u.Username, username);
+            return users.Find(filter).FirstOrDefault();
         }
     }
 }
