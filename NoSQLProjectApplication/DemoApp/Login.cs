@@ -15,6 +15,12 @@ namespace DemoApp
         public Login()
         {
             InitializeComponent();
+            this.textBox_password.PasswordChar = '*';
+        }
+
+        private void button_login_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

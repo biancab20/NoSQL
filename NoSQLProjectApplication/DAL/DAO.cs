@@ -13,18 +13,11 @@ namespace DAL
         public DAO()
         {
             client = new MongoClient("mongodb+srv://user1:user12345@cluster0.wmykyq2.mongodb.net/");
+            IMongoDatabase db = client.GetDatabase("TheGardenGroupDatabase");
+            IMongoCollection<User> userCollection = db.GetCollection<User>("User");
+            IMongoCollection<Ticket> ticketCollection = db.GetCollection<Ticket>("Ticket");
         }
 
-        //public List<Databases_Model> GetDatabases()
-        //{
-        //    List<Databases_Model> all_databases = new List<Databases_Model>();
-            
-        //    foreach (BsonDocument db in client.ListDatabases().ToList())
-        //    {
-        //        all_databases.Add(BsonSerializer.Deserialize<Databases_Model>(db));
-        //    }
-        //    return all_databases;
-        //}
     }
 
 
