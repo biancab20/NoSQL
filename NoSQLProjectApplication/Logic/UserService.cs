@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MongoDB.Driver;
+using System.Security.Cryptography;
+
 
 namespace Logic
 {
