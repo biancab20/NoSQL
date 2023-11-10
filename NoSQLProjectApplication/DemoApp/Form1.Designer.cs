@@ -34,6 +34,7 @@ namespace DemoApp
             this.buttonViewHisOwnTicket = new System.Windows.Forms.Button();
             this.buttonAddIncident = new System.Windows.Forms.Button();
             this.labelTemporaryForm = new System.Windows.Forms.Label();
+            this.buttonUserManagement = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonLogin
@@ -86,11 +87,22 @@ namespace DemoApp
             this.labelTemporaryForm.TabIndex = 4;
             this.labelTemporaryForm.Text = "Temporary form";
             // 
+            // buttonUserManagement
+            // 
+            this.buttonUserManagement.Location = new System.Drawing.Point(72, 194);
+            this.buttonUserManagement.Name = "buttonUserManagement";
+            this.buttonUserManagement.Size = new System.Drawing.Size(146, 23);
+            this.buttonUserManagement.TabIndex = 5;
+            this.buttonUserManagement.Text = "User Management";
+            this.buttonUserManagement.UseVisualStyleBackColor = true;
+            this.buttonUserManagement.Click += new System.EventHandler(this.buttonUserManagement_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(280, 235);
+            this.Controls.Add(this.buttonUserManagement);
             this.Controls.Add(this.labelTemporaryForm);
             this.Controls.Add(this.buttonAddIncident);
             this.Controls.Add(this.buttonViewHisOwnTicket);
@@ -112,6 +124,7 @@ namespace DemoApp
         private System.Windows.Forms.Button buttonViewHisOwnTicket;
         private System.Windows.Forms.Button buttonAddIncident;
         private System.Windows.Forms.Label labelTemporaryForm;
+        private System.Windows.Forms.Button buttonUserManagement;
     }
 }
 

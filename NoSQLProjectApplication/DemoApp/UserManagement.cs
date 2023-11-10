@@ -42,7 +42,7 @@ namespace DemoApp
                 item.SubItems.Add(user.Email);
                 item.SubItems.Add(user.FirstName);
                 item.SubItems.Add(user.LastName);
-                item.SubItems.Add(user.Ticket.ToString()); // Assuming Ticket is an int property
+                item.SubItems.Add(user.Ticket.ToString());
 
                 listViewUsers.Items.Add(item);
             }

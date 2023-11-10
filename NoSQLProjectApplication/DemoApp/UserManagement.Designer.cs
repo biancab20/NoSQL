@@ -31,7 +31,8 @@
             this.listViewUsers = new System.Windows.Forms.ListView();
             this.label1 = new System.Windows.Forms.Label();
             this.txtFilterByEmail = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnAddUser = new System.Windows.Forms.Button();
+            this.btnFilterByEmail = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listViewUsers
@@ -60,21 +61,31 @@
             this.txtFilterByEmail.Size = new System.Drawing.Size(156, 22);
             this.txtFilterByEmail.TabIndex = 2;
             // 
-            // button1
+            // btnAddUser
             // 
-            this.button1.Location = new System.Drawing.Point(595, 142);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(164, 46);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnAddUser.Location = new System.Drawing.Point(595, 142);
+            this.btnAddUser.Name = "btnAddUser";
+            this.btnAddUser.Size = new System.Drawing.Size(164, 46);
+            this.btnAddUser.TabIndex = 3;
+            this.btnAddUser.Text = "Add User";
+            this.btnAddUser.UseVisualStyleBackColor = true;
+            // 
+            // btnFilterByEmail
+            // 
+            this.btnFilterByEmail.Location = new System.Drawing.Point(212, 129);
+            this.btnFilterByEmail.Name = "btnFilterByEmail";
+            this.btnFilterByEmail.Size = new System.Drawing.Size(75, 23);
+            this.btnFilterByEmail.TabIndex = 4;
+            this.btnFilterByEmail.Text = "Search";
+            this.btnFilterByEmail.UseVisualStyleBackColor = true;
             // 
             // UserManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnFilterByEmail);
+            this.Controls.Add(this.btnAddUser);
             this.Controls.Add(this.txtFilterByEmail);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listViewUsers);
@@ -90,6 +101,7 @@
         private System.Windows.Forms.ListView listViewUsers;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtFilterByEmail;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnAddUser;
+        private System.Windows.Forms.Button btnFilterByEmail;
     }
 }
