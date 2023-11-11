@@ -21,6 +21,13 @@ namespace DemoApp
         {
             InitializeComponent();
             userService = new UserService();
+
+            listViewUsers.View = View.Details;
+            listViewUsers.Columns.Add("ID", 80, HorizontalAlignment.Left);
+            listViewUsers.Columns.Add("First Name", 120, HorizontalAlignment.Left);
+            listViewUsers.Columns.Add("Last Name", 120, HorizontalAlignment.Left);
+            listViewUsers.Columns.Add("Email", 200, HorizontalAlignment.Left);
+            listViewUsers.Columns.Add("Number of Tickets", 120, HorizontalAlignment.Left);
         }
         private void UserManagement_Load(object sender, EventArgs e)
         {
