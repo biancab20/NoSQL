@@ -72,13 +72,9 @@ namespace DemoApp
                     MessageBox.Show("Incorrect username. Please try again!", "Message", MessageBoxButtons.OK);
                 }
             }
-            catch(Exception ex)
+            catch
             {
-               // Exception exception;
-                //Console.WriteLine(ex);
-
-                MessageBox.Show(ex.ToString());
-                //MessageBox.Show("An error occurred. Please try again later.", "Message", MessageBoxButtons.OK);
+                MessageBox.Show("An error occurred. Please try again later.", "Message", MessageBoxButtons.OK);
             }
 
             return null;
