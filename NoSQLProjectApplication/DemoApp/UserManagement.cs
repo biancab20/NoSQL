@@ -26,8 +26,10 @@ namespace DemoApp
             listViewUsers.Columns.Add("ID", 80, HorizontalAlignment.Left);
             listViewUsers.Columns.Add("First Name", 120, HorizontalAlignment.Left);
             listViewUsers.Columns.Add("Last Name", 120, HorizontalAlignment.Left);
-            listViewUsers.Columns.Add("Email", 200, HorizontalAlignment.Left);
+            listViewUsers.Columns.Add("Email", 120, HorizontalAlignment.Left);
             listViewUsers.Columns.Add("Number of Tickets", 120, HorizontalAlignment.Left);
+
+            LoadAllUsers();
         }
         private void UserManagement_Load(object sender, EventArgs e)
         {
@@ -41,15 +43,20 @@ namespace DemoApp
 
             // Clear existing items in ListView
             listViewUsers.Items.Clear();
-           
+
 
             // Populate the ListView with user information
-            foreach (var user in allUsers)
+            for (int i = 0; i < allUsers.Count; i++)
             {
-                ListViewItem item = new ListViewItem(user.Id.ToString()); // Numeric ID
-                item.SubItems.Add(user.Email);
+                var user = allUsers[i];
+
+                // Assign a numerical ID based on the position in the list
+                int numericId = i + 1;
+
+                ListViewItem item = new ListViewItem(numericId.ToString()); // Numeric ID
                 item.SubItems.Add(user.FirstName);
                 item.SubItems.Add(user.LastName);
+                item.SubItems.Add(user.Email);
                 item.SubItems.Add(user.Ticket.ToString());
 
                 listViewUsers.Items.Add(item);
@@ -85,9 +92,9 @@ namespace DemoApp
             foreach (var user in users)
             {
                 ListViewItem item = new ListViewItem(user.Id.ToString()); // Numeric ID
-                item.SubItems.Add(user.Email);
                 item.SubItems.Add(user.FirstName);
                 item.SubItems.Add(user.LastName);
+                item.SubItems.Add(user.Email);
                 item.SubItems.Add(user.Ticket.ToString()); // Assuming Ticket is an int property
 
                 listViewUsers.Items.Add(item);
