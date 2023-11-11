@@ -70,7 +70,7 @@ namespace DemoApp
         {
             string userRole = userService.GetCurrentUserRole();
 
-            string currentUsername = userService.GetCurrentUsername();
+            //string currentUsername = userService.GetCurrentUsername();
 
             allTickets = ticketService.GetAllTicket();
 

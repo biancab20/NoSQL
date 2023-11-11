@@ -14,10 +14,16 @@ namespace DemoApp
     public partial class Dashboard : Form
     {
         private List<Ticket> allTickets;
+        private User user;
 
         public Dashboard()
         {
             InitializeComponent();
+        }
+
+        public Dashboard(User user)
+        {
+            this.user = user;
         }
 
         private void Dashboard_Load(object sender, EventArgs e)

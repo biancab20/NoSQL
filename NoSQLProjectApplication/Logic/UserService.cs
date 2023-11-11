@@ -42,7 +42,7 @@ namespace Logic
                 LastName = "Doe",
                 Username = "john.doe",
                 Password = "hashed_password",
-                Role = Role.ServiceDesk 
+                Role = Role.ServiceDesk
             };
 
         }
@@ -68,16 +68,10 @@ namespace Logic
         }
         public User GetUserByUserName(string username) => userDAO.GetUserByUserName(username);
         public User GetUserByPassword(string password) => userDAO.GetUserByPassword(password);
-<<<<<<< HEAD
+
         public void UpdatePassword(string username, string password)
         {
             userDAO.UpdatePassword(username, password);
-=======
-
-        public string GetCurrentUsername()
-        {
-            return currentUser?.Username;
->>>>>>> main
         }
     }
 }
