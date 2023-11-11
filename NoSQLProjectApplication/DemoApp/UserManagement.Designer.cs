@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Name");
             this.listViewUsers = new System.Windows.Forms.ListView();
             this.label1 = new System.Windows.Forms.Label();
             this.txtFilterByEmail = new System.Windows.Forms.TextBox();
@@ -38,6 +39,8 @@
             // listViewUsers
             // 
             this.listViewUsers.HideSelection = false;
+            this.listViewUsers.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem1});
             this.listViewUsers.Location = new System.Drawing.Point(29, 194);
             this.listViewUsers.Name = "listViewUsers";
             this.listViewUsers.Size = new System.Drawing.Size(730, 244);
