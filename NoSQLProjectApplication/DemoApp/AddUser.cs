@@ -19,6 +19,10 @@ namespace DemoApp
         public AddUser()
         {
             InitializeComponent();
+
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+
             userService = new UserService();
 
             cmbRole.Items.AddRange(Enum.GetNames(typeof(Role)));
@@ -28,6 +32,17 @@ namespace DemoApp
 
         private void addUserButton_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtFirstName.Text) ||
+            string.IsNullOrWhiteSpace(txtLastName.Text) ||
+            string.IsNullOrWhiteSpace(txtEmail.Text) ||
+            string.IsNullOrWhiteSpace(txtUsername.Text) ||
+            string.IsNullOrWhiteSpace(txtPassword.Text) ||
+             cmbRole.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please fill in all fields and select a role.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             string firstName = txtFirstName.Text;
             string lastName = txtLastName.Text;
             string email = txtEmail.Text;
@@ -49,6 +64,12 @@ namespace DemoApp
 
             MessageBox.Show("User added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+            txtFirstName.Text = "";
+            txtLastName.Text = "";
+            txtEmail.Text = "";
+            txtUsername.Text = "";
+            txtPassword.Text = "";
+            cmbRole.Text = "Select Role";
         }
     }
 }

@@ -20,6 +20,12 @@ namespace DemoApp
         public UserManagement()
         {
             InitializeComponent();
+
+
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+
+
             userService = new UserService();
 
             listViewUsers.View = View.Details;
@@ -63,15 +69,6 @@ namespace DemoApp
             }
         }
 
-        private void btnFilterByEmail_Click(object sender, EventArgs e)
-        {
-            // Filter users by email
-            string filterEmail = txtFilterByEmail.Text.Trim().ToLower();
-            List<User> filteredUsers = allUsers.FindAll(user => user.Email.ToLower().Contains(filterEmail));
-
-            // Update the ListView with filtered users
-            PopulateListViewWithUsers(filteredUsers);
-        }
 
         private void btnAddUser_Click(object sender, EventArgs e)
         {
@@ -125,6 +122,16 @@ namespace DemoApp
             ViewTicket viewTicket = new ViewTicket();
             viewTicket.ShowDialog();    
             this.Close();
+        }
+
+        private void btnFilterByEmail_Click_1(object sender, EventArgs e)
+        {
+            // Filter users by email
+            string filterEmail = txtFilterByEmail.Text.Trim().ToLower();
+            List<User> filteredUsers = allUsers.FindAll(user => user.Email.ToLower().Contains(filterEmail));
+
+            // Update the ListView with filtered users
+            PopulateListViewWithUsers(filteredUsers);
         }
     }
 

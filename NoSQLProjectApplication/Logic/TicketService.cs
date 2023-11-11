@@ -23,6 +23,11 @@ namespace Logic
             return ticketDAO.GetAllTickets();
         }
 
+        public List<Ticket> GetAllTicket()
+        {
+            return ticketDAO.GetAllTicket();
+        }
+
         //public int GetNewTicketId()
         //{ 
         //    return ticketDAO.GetNewTicketId();

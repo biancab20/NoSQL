@@ -102,7 +102,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(24, 47);
+            this.label7.Location = new System.Drawing.Point(60, 47);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(139, 32);
             this.label7.TabIndex = 6;
@@ -153,7 +153,7 @@
             // 
             // addUserButton
             // 
-            this.addUserButton.Location = new System.Drawing.Point(24, 313);
+            this.addUserButton.Location = new System.Drawing.Point(66, 304);
             this.addUserButton.Name = "addUserButton";
             this.addUserButton.Size = new System.Drawing.Size(121, 41);
             this.addUserButton.TabIndex = 13;
@@ -165,7 +165,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(277, 381);
             this.Controls.Add(this.addUserButton);
             this.Controls.Add(this.cmbRole);
             this.Controls.Add(this.txtPassword);

@@ -80,16 +80,17 @@
             // 
             this.btnFilterByEmail.Location = new System.Drawing.Point(193, 162);
             this.btnFilterByEmail.Name = "btnFilterByEmail";
-            this.btnFilterByEmail.Size = new System.Drawing.Size(75, 23);
+            this.btnFilterByEmail.Size = new System.Drawing.Size(75, 26);
             this.btnFilterByEmail.TabIndex = 4;
             this.btnFilterByEmail.Text = "Search";
             this.btnFilterByEmail.UseVisualStyleBackColor = true;
+            this.btnFilterByEmail.Click += new System.EventHandler(this.btnFilterByEmail_Click_1);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(556, 44);
+            this.label2.Location = new System.Drawing.Point(527, 44);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(287, 25);
             this.label2.TabIndex = 9;
@@ -99,7 +100,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(708, 6);
+            this.label3.Location = new System.Drawing.Point(679, 6);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(135, 38);
             this.label3.TabIndex = 8;
