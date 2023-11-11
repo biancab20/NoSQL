@@ -26,8 +26,9 @@ namespace Model
         public Role Role { get; set; }
 
         [BsonElement("ticket")]
-        public int Ticket { get; set; }
+        [BsonIgnoreIfNull]
+        public int? Ticket { get; set; }
 
-       
+
     }
 }
