@@ -129,7 +129,7 @@
             // 
             this.btnSearch.Location = new System.Drawing.Point(738, 156);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(101, 25);
+            this.btnSearch.Size = new System.Drawing.Size(101, 23);
             this.btnSearch.TabIndex = 17;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;

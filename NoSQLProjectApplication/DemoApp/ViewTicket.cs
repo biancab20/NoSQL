@@ -17,6 +17,7 @@ namespace DemoApp
         private TicketService ticketService;
         private UserService userService;
         private List<Ticket> allTickets;
+        private TicketFilterService ticketFilterService;
 
         public ViewTicket()
         {
@@ -39,6 +40,8 @@ namespace DemoApp
 
             LoadAllTickets();
             listViewTickets.SelectedIndexChanged += listViewTickets_SelectedIndexChanged;
+
+            ticketFilterService = new TicketFilterService(allTickets);
         }
 
         private void listViewTickets_SelectedIndexChanged(object sender, EventArgs e)
@@ -120,32 +123,9 @@ namespace DemoApp
         {
             string searchQuery = txtSearch.Text.ToLower();
 
-            List<Ticket> filteredTickets = FilterTickets(searchQuery);
+            List<Ticket> filteredTickets = ticketFilterService.FilterTickets(searchQuery, userService.GetCurrentUserRole(), userService.GetCurrentUsername());
 
             PopulateListViewWithTickets(filteredTickets, userService.GetCurrentUserRole(), userService.GetCurrentUsername());
-        }
-
-        private List<Ticket> FilterTickets(string searchQuery)
-        {
-            // Split the search
-            string[] searchWords = searchQuery.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-
-            // Filter tickets
-            List<Ticket> filteredTickets = allTickets.Where(ticket =>
-            {
-                // Check if ticket not null
-                if (ticket != null && ticket.Subject != null)
-                {
-                    return searchWords.All(word =>
-                        ticket.Subject.ToLower().Contains(word) || ticket.Description.ToLower().Contains(word)
-                    );
-                }
-                return false;
-            }).ToList();
-
-            filteredTickets = filteredTickets.OrderByDescending(ticket => ticket.DeadlineFollowUp).ToList();
-
-            return filteredTickets;
         }
 
         private void user_Click(object sender, EventArgs e)
