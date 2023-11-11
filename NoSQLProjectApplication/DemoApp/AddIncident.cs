@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using Logic;
 using Model;
+using MongoDB.Driver;
 
 namespace DemoApp
 {
@@ -18,6 +19,7 @@ namespace DemoApp
     {
         private User loggedInUser;
         private TicketService ticketService;
+        private Ticket ticketToUpdate;
 
         public AddIncident(User user)
         {
@@ -29,6 +31,9 @@ namespace DemoApp
             if (loggedInUser.Role == Role.ServiceDesk)
             {
                 StyleServiceDesk();
+
+                this.ticketToUpdate = ticketToUpdate;
+
                 PopulateFormForUpdate(ticketToUpdate);
             }
             else
@@ -37,6 +42,11 @@ namespace DemoApp
             }
 
             ticketService = new TicketService();
+        }
+
+        public AddIncident(User user, Ticket ticketToUpdate) :this(user)
+        {
+            this.ticketToUpdate = ticketToUpdate;
         }
 
         private void StyleServiceDesk()
@@ -56,6 +66,7 @@ namespace DemoApp
             labelTicketStatus.Visible = false;
             comboBoxTicketStatus.Visible = false;
             buttonUpdateTicket.Visible = false;
+            buttonSubmitTicket.Visible = true;
         }
 
         private void FillBoxesData()
@@ -134,7 +145,8 @@ namespace DemoApp
 
         private void PopulateFormForUpdate(Ticket ticket)
         {
-
+            textBoxSubject.Text = ticket.Subject;
+            comboBoxIncidentType.SelectedItem = ticket.IncidentType.ToString();
         }
 
         private bool CheckForm()
@@ -172,7 +184,36 @@ namespace DemoApp
 
         private void buttonUpdateTicket_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (CheckForm())
+                {
+                    Ticket updatedTicket = new Ticket();
 
+                    //
+                    updatedTicket.Subject = textBoxSubject.Text;
+                    updatedTicket.IncidentType = (IncidentType)Enum.Parse(typeof(IncidentType), comboBoxIncidentType.SelectedItem.ToString());
+                    
+                    //
+
+                    //ticketService.UpdateTicket(ticketToUpdate.ObjectId.ToString(), updatedTicket);
+
+                    MessageBox.Show("Ticket has been updated!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    this.Hide();
+                    ViewTicket viewticket = new ViewTicket(loggedInUser);
+                    viewticket.ShowDialog();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Please fill in all the fields.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.ToString());
+            }
         }
     }
 }

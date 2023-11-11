@@ -28,6 +28,7 @@ namespace DemoApp
             btnUser.Visible = true;
             buttonDeleteIncident.Visible = true;
             buttonUpdateIncident.Visible = true;
+            btnAddIncident.Visible = false;
         }
 
         private void StyleOther()
@@ -35,6 +36,7 @@ namespace DemoApp
             btnUser.Visible = false;
             buttonDeleteIncident.Visible = false;
             buttonUpdateIncident.Visible = false;
+            btnAddIncident.Visible = true;
         }
 
         public ViewTicket(User user)
@@ -198,7 +200,23 @@ namespace DemoApp
 
         private void buttonUpdateIncident_Click(object sender, EventArgs e)
         {
+            if (listViewTickets.SelectedItems.Count > 0)
+            {
+                string ticketId = listViewTickets.SelectedItems[0].Tag.ToString();
 
+                Ticket selectedTicket = ticketService.GetTicketByUserId(ticketId);
+
+                if (selectedTicket != null)
+                {
+                    AddIncident addIncidentForm = new AddIncident(loggedInUser, selectedTicket);
+                    addIncidentForm.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("Ticket not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                
+            }
         }
     }
 }
