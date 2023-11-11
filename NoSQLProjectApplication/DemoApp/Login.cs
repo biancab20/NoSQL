@@ -40,14 +40,9 @@ namespace DemoApp
                 user = ValidateUserCreditentials(username, password);
                 if(user != null)
                 {
-                    //this.Hide();
-                    //AddIncident addIncident = new AddIncident(user);
-                    //addIncident.ShowDialog();
-                    //this.Close();
-
                     this.Hide();
-                    Form1 form = new Form1();
-                    form.ShowDialog();
+                    Dashboard dashboard = new Dashboard(user);
+                    dashboard.ShowDialog();
                     this.Close();
                 }
             }
