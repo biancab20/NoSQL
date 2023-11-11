@@ -147,6 +147,9 @@
     <Compile Include="ViewTicket.Designer.cs">
       <DependentUpon>ViewTicket.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddIncident.resx">
+      <DependentUpon>AddIncident.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
