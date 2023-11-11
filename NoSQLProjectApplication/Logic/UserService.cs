@@ -42,7 +42,7 @@ namespace Logic
                 LastName = "Doe",
                 Username = "john.doe",
                 Password = "hashed_password",
-                Role = Role.ServiceDesk 
+                Role = Role.ServiceDesk
             };
 
         }
