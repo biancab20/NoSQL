@@ -110,6 +110,22 @@ namespace DemoApp
             // Reload users when the AddUserForm is closed
             LoadAllUsers();
         }
+
+        private void dashboard_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Dashboard dashboard = new Dashboard();
+            dashboard.ShowDialog();
+            this.Close();
+        }
+
+        private void incident_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            ViewTicket viewTicket = new ViewTicket();
+            viewTicket.ShowDialog();    
+            this.Close();
+        }
     }
 
 }
