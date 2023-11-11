@@ -106,7 +106,7 @@
             this.label3.TabIndex = 8;
             this.label3.Text = "NoDesk";
             // 
-            // user
+            // btnUser
             // 
             this.user.Location = new System.Drawing.Point(568, 72);
             this.user.Name = "user";

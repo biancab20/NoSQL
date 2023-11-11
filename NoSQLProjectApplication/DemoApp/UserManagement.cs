@@ -16,11 +16,13 @@ namespace DemoApp
     {
         private UserService userService;
         private List<User> allUsers;
+        private User loggedInUser;
 
-        public UserManagement()
+        public UserManagement(User user)
         {
             InitializeComponent();
 
+            this.loggedInUser = user;
 
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -57,7 +59,7 @@ namespace DemoApp
                 user.Tickets = ticketService.GetTicketsByUserId(user.Id.ToString());
             }
 
-            // Populate the ListView with user information
+            // Populate the ListView with btnUser information
             for (int i = 0; i < allUsers.Count; i++)
             {
                 var user = allUsers[i];
@@ -93,7 +95,7 @@ namespace DemoApp
             // Clear existing items in ListView
             listViewUsers.Items.Clear();
 
-            // Populate the ListView with user information
+            // Populate the ListView with btnUser information
             foreach (var user in users)
             {
                 ListViewItem item = new ListViewItem(user.Id.ToString()); // Numeric ID
@@ -119,7 +121,7 @@ namespace DemoApp
         private void dashboard_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Dashboard dashboard = new Dashboard();
+            Dashboard dashboard = new Dashboard(loggedInUser);
             dashboard.ShowDialog();
             this.Close();
         }
@@ -127,7 +129,7 @@ namespace DemoApp
         private void incident_Click(object sender, EventArgs e)
         {
             this.Hide();
-            ViewTicket viewTicket = new ViewTicket();
+            ViewTicket viewTicket = new ViewTicket(loggedInUser);
             viewTicket.ShowDialog();    
             this.Close();
         }

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.user = new System.Windows.Forms.Button();
+            this.btnUser = new System.Windows.Forms.Button();
             this.incident = new System.Windows.Forms.Button();
             this.dashboard = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -40,15 +40,15 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // user
+            // btnUser
             // 
-            this.user.Location = new System.Drawing.Point(566, 91);
-            this.user.Name = "user";
-            this.user.Size = new System.Drawing.Size(275, 40);
-            this.user.TabIndex = 10;
-            this.user.Text = "User Management";
-            this.user.UseVisualStyleBackColor = true;
-            this.user.Click += new System.EventHandler(this.user_Click);
+            this.btnUser.Location = new System.Drawing.Point(566, 91);
+            this.btnUser.Name = "user";
+            this.btnUser.Size = new System.Drawing.Size(275, 40);
+            this.btnUser.TabIndex = 10;
+            this.btnUser.Text = "User Management";
+            this.btnUser.UseVisualStyleBackColor = true;
+            this.btnUser.Click += new System.EventHandler(this.user_Click);
             // 
             // incident
             // 
@@ -147,7 +147,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.user);
+            this.Controls.Add(this.btnUser);
             this.Controls.Add(this.incident);
             this.Controls.Add(this.dashboard);
             this.Name = "ViewTicket";
@@ -159,7 +159,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button user;
+        private System.Windows.Forms.Button btnUser;
         private System.Windows.Forms.Button incident;
         private System.Windows.Forms.Button dashboard;
         private System.Windows.Forms.Label label2;

@@ -16,22 +16,35 @@ namespace DemoApp
     public partial class Dashboard : Form
     {
         private List<Ticket> allTickets;
-        private User user;
-
-        public Dashboard()
-        {
-            InitializeComponent();
-        }
-
+        private User loggedInUser;
 
         public Dashboard(User user)
         {
-            this.user = user;
+            InitializeComponent();
+            this.loggedInUser = user;
         }
+
 
         private void Dashboard_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnIncident_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            ViewTicket viewticket = new ViewTicket(loggedInUser);
+            viewticket.ShowDialog();
+            this.Close();
+        
+        }
+
+        private void btnUser_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            UserManagement userManagement = new UserManagement(loggedInUser);
+            userManagement.Show();
+            this.Close();
         }
     }
 }

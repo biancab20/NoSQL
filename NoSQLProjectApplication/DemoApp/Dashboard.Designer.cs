@@ -63,6 +63,7 @@
             this.btnUser.TabIndex = 12;
             this.btnUser.Text = "User Management";
             this.btnUser.UseVisualStyleBackColor = true;
+            this.btnUser.Click += new System.EventHandler(this.btnUser_Click);
             // 
             // btnIncident
             // 
@@ -72,6 +73,7 @@
             this.btnIncident.TabIndex = 11;
             this.btnIncident.Text = "Incident Management";
             this.btnIncident.UseVisualStyleBackColor = true;
+            this.btnIncident.Click += new System.EventHandler(this.btnIncident_Click);
             // 
             // button1
             // 

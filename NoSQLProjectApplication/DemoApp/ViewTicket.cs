@@ -19,10 +19,14 @@ namespace DemoApp
         private UserService userService;
         private List<Ticket> allTickets;
         private TicketFilterService ticketFilterService;
+        private User loggedInUser;
 
-        public ViewTicket()
+
+        public ViewTicket(User user)
         {
             InitializeComponent();
+
+            this.loggedInUser = user;
 
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -76,8 +80,8 @@ namespace DemoApp
 
             listViewTickets.Items.Clear();
 
-            // Populate based on user role
-            PopulateListViewWithTickets(allTickets, userRole, currentUsername);
+            // Populate based on btnUser role
+           // PopulateListViewWithTickets(allTickets, userRole, currentUsername);
         }
 
         private void PopulateListViewWithTickets(List<Ticket> tickets, string userRole, string currentUsername)
@@ -128,15 +132,15 @@ namespace DemoApp
         {
             string searchQuery = txtSearch.Text.ToLower();
 
-            List<Ticket> filteredTickets = ticketFilterService.FilterTickets(searchQuery, userService.GetCurrentUserRole(), userService.GetCurrentUsername());
+            List<Ticket> filteredTickets = ticketFilterService.FilterTickets(searchQuery, loggedInUser.Role.ToString(), loggedInUser.Username);
 
-            PopulateListViewWithTickets(filteredTickets, userService.GetCurrentUserRole(), userService.GetCurrentUsername());
+            PopulateListViewWithTickets(filteredTickets, loggedInUser.Role.ToString(), loggedInUser.Username);
         }
 
         private void user_Click(object sender, EventArgs e)
         {
             this.Hide();
-            UserManagement userManagement = new UserManagement();
+            UserManagement userManagement = new UserManagement(loggedInUser);
             userManagement.ShowDialog();
             this.Close();
         }
@@ -144,7 +148,7 @@ namespace DemoApp
         private void dashboard_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Dashboard dashboard = new Dashboard();
+            Dashboard dashboard = new Dashboard(loggedInUser);
             dashboard.ShowDialog();
             this.Close();
         }

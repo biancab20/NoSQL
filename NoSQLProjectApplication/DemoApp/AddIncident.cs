@@ -83,7 +83,7 @@ namespace DemoApp
         private void buttonCancel_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Dashboard dashboard = new Dashboard();
+            Dashboard dashboard = new Dashboard(loggedInUser);
             dashboard.ShowDialog();
             this.Close();
         }
@@ -138,7 +138,7 @@ namespace DemoApp
         private void buttonDashboard_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Dashboard dashboard = new Dashboard();
+            Dashboard dashboard = new Dashboard(loggedInUser);
             dashboard.ShowDialog();
             this.Close();
         }
@@ -151,7 +151,7 @@ namespace DemoApp
         private void buttonUserManagement_Click(object sender, EventArgs e)
         {
             this.Hide();
-            UserManagement userManagement = new UserManagement();
+            UserManagement userManagement = new UserManagement(loggedInUser);
             userManagement.ShowDialog();
             this.Close();
         }
