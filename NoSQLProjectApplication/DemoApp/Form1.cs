@@ -51,5 +51,13 @@ namespace DemoApp
             addIncident.ShowDialog();
             this.Close();
         }
+
+        private void buttonUserManagement_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            UserManagement userManagement = new UserManagement();
+            userManagement.ShowDialog();
+            this.Close();
+        }
     }
 }

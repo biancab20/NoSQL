@@ -13,6 +13,18 @@ namespace DAL
 {
     public class UserDAO : DAO
     {
+
+        private IMongoClient client;
+        private IMongoDatabase database;
+        private IMongoCollection<User> collection;
+
+        public UserDAO()
+        {
+            client = new MongoClient("mongodb+srv://user1:user12345@cluster0.wmykyq2.mongodb.net/");
+            database = client.GetDatabase("TheGardenGroupDatabase");
+            collection = database.GetCollection<User>("User");
+        }
+       
         public List<User> GetAllUsers()
         {
             return users.Find(_ => true).ToList();
