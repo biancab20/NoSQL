@@ -28,11 +28,6 @@ namespace Logic
             return ticketDAO.GetAllTicket();
         }
 
-        //public int GetNewTicketId()
-        //{ 
-        //    return ticketDAO.GetNewTicketId();
-        //}
-
         public void CreateTicket(Ticket ticket)
         {
             ticketDAO.CreateTicket(ticket);
