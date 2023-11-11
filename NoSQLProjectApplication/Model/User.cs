@@ -29,6 +29,8 @@ namespace Model
         [BsonIgnoreIfNull]
         public int? Ticket { get; set; }
 
+        [BsonIgnoreIfNull]
         public List<Ticket> Tickets { get; set; }
+     
     }
 }

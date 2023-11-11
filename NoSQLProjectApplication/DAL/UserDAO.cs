@@ -40,10 +40,15 @@ namespace DAL
         }
         public void UpdatePassword(string userEmail,string updatePassword)
         {
-            var filter = Builders<User>.Filter.Eq(u => u.Email, userEmail);
+            //var filter = Builders<User>.Filter.Eq(u => u.Email, userEmail);
             //var user = users.Find(filter).FirstOrDefault();
-            var updatedUserPassword = Builders<BsonDocument>.Update.Set("password", Hash(updatePassword));
-            users.UpdateOne(filter, updatePassword);
+            //var updatedUserPassword = Builders<BsonDocument>.Update.Set("password", Hash(updatePassword));
+            //users.UpdateOne(s => s.Password == ObjectId.Parse (updatedUserPassword));
+
+            var filter = Builders<User>.Filter.Eq(u => u.Email, userEmail);
+            var update = Builders<User>.Update.Set(u => u.Password, Hash(updatePassword));
+            var result = users.UpdateOne(filter, update);
+
 
         }
         public void DeleteUser(string userId)
