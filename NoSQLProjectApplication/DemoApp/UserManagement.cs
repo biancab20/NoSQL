@@ -34,6 +34,7 @@ namespace DemoApp
 
             // Clear existing items in ListView
             listViewUsers.Items.Clear();
+           
 
             // Populate the ListView with user information
             foreach (var user in allUsers)
@@ -84,6 +85,16 @@ namespace DemoApp
 
                 listViewUsers.Items.Add(item);
             }
+        }
+
+        private void btnAddUser_Click_1(object sender, EventArgs e)
+        {
+            // Open the AddUserForm
+            AddUser addUserForm = new AddUser();
+            addUserForm.ShowDialog();
+
+            // Reload users when the AddUserForm is closed
+            LoadAllUsers();
         }
     }
 

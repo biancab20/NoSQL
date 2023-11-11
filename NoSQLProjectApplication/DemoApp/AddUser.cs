@@ -20,6 +20,10 @@ namespace DemoApp
         {
             InitializeComponent();
             userService = new UserService();
+
+            cmbRole.Items.AddRange(Enum.GetNames(typeof(Role)));
+
+            cmbRole.Text = "Select Role";
         }
 
         private void addUserButton_Click(object sender, EventArgs e)
