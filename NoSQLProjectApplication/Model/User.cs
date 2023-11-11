@@ -28,5 +28,7 @@ namespace Model
         [BsonElement("ticket")]
         [BsonIgnoreIfNull]
         public int? Ticket { get; set; }
+
+        public List<Ticket> Tickets { get; set; }
     }
 }

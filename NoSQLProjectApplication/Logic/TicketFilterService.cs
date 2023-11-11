@@ -18,10 +18,8 @@ namespace Logic
 
         public List<Ticket> FilterTickets(string searchQuery, string userRole, string currentUsername)
         {
-            // Split the search query into individual words
             string[] searchWords = searchQuery.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
-            // Filter tickets based on search query and user role
             List<Ticket> filteredTickets = allTickets
                 .Where(ticket => IsTicketVisible(ticket, searchWords, userRole, currentUsername))
                 .OrderByDescending(ticket => ticket.DeadlineFollowUp)
