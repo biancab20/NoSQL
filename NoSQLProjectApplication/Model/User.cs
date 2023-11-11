@@ -1,4 +1,4 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
@@ -27,8 +27,8 @@ namespace Model
 
         [BsonElement("ticket")]
         [BsonIgnoreIfNull]
-        public int Ticket { get; set; }
+        public int? Ticket { get; set; }
 
-       
+        public List<Ticket> Tickets { get; set; }
     }
 }
