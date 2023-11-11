@@ -46,8 +46,12 @@ namespace DemoApp
 
         private void buttonAddIncident_Click(object sender, EventArgs e)
         {
+            User user = new User();
+            user.FirstName = "Temporary";
+            user.Role = Role.Other;
+
             this.Hide();
-            AddIncident addIncident = new AddIncident();
+            AddIncident addIncident = new AddIncident(user);
             addIncident.ShowDialog();
             this.Close();
         }

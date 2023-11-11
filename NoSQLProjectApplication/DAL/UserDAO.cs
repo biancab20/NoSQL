@@ -38,6 +38,14 @@ namespace DAL
             var filter = Builders<User>.Filter.Eq(u => u.Id, new ObjectId(userId));
             users.UpdateOne(filter, updateDefinition);
         }
+        public void UpdatePassword(string userEmail,string updatePassword)
+        {
+            var filter = Builders<User>.Filter.Eq(u => u.Email, userEmail);
+            //var user = users.Find(filter).FirstOrDefault();
+            var updatedUserPassword = Builders<BsonDocument>.Update.Set("password", Hash(updatePassword));
+            users.UpdateOne(filter, updatePassword);
+
+        }
         public void DeleteUser(string userId)
         {
             var filter = Builders<User>.Filter.Eq(u => u.Id, new ObjectId(userId));

@@ -40,11 +40,16 @@ namespace DemoApp
                 user = ValidateUserCreditentials(username, password);
                 if(user != null)
                 {
+                    //this.Hide();
+                    //AddIncident addIncident = new AddIncident(user);
+                    //addIncident.ShowDialog();
+                    //this.Close();
+
+                    this.Hide();
                     Form1 form = new Form1();
                     form.ShowDialog();
                     this.Close();
                 }
-
             }
         }
         
@@ -78,6 +83,12 @@ namespace DemoApp
             }
 
             return null;
+        }
+
+        private void label_forgotPassword_Click(object sender, EventArgs e)
+        {
+            Form2 form = new Form2();
+            form.ShowDialog();
         }
     }
     
