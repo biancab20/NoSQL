@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.buttonDashboard = new System.Windows.Forms.Button();
+            this.buttonIncidentManagement = new System.Windows.Forms.Button();
+            this.buttonUserManagement = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.labelDateTime = new System.Windows.Forms.Label();
@@ -52,34 +52,39 @@
             this.comboBoxPriority = new System.Windows.Forms.ComboBox();
             this.textBoxReportedByUser = new System.Windows.Forms.TextBox();
             this.textBoxSubject = new System.Windows.Forms.TextBox();
+            this.comboBoxTicketStatus = new System.Windows.Forms.ComboBox();
+            this.labelTicketStatus = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // button1
+            // buttonDashboard
             // 
-            this.button1.Location = new System.Drawing.Point(31, 92);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(275, 40);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Dashboard";
-            this.button1.UseVisualStyleBackColor = true;
+            this.buttonDashboard.Location = new System.Drawing.Point(31, 92);
+            this.buttonDashboard.Name = "buttonDashboard";
+            this.buttonDashboard.Size = new System.Drawing.Size(275, 40);
+            this.buttonDashboard.TabIndex = 0;
+            this.buttonDashboard.Text = "Dashboard";
+            this.buttonDashboard.UseVisualStyleBackColor = true;
+            this.buttonDashboard.Click += new System.EventHandler(this.buttonDashboard_Click);
             // 
-            // button2
+            // buttonIncidentManagement
             // 
-            this.button2.Location = new System.Drawing.Point(312, 92);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(275, 40);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Incident Management";
-            this.button2.UseVisualStyleBackColor = true;
+            this.buttonIncidentManagement.Location = new System.Drawing.Point(312, 92);
+            this.buttonIncidentManagement.Name = "buttonIncidentManagement";
+            this.buttonIncidentManagement.Size = new System.Drawing.Size(275, 40);
+            this.buttonIncidentManagement.TabIndex = 1;
+            this.buttonIncidentManagement.Text = "Incident Management";
+            this.buttonIncidentManagement.UseVisualStyleBackColor = true;
+            this.buttonIncidentManagement.Click += new System.EventHandler(this.buttonIncidentManagement_Click);
             // 
-            // button3
+            // buttonUserManagement
             // 
-            this.button3.Location = new System.Drawing.Point(593, 92);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(275, 40);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "User Management";
-            this.button3.UseVisualStyleBackColor = true;
+            this.buttonUserManagement.Location = new System.Drawing.Point(593, 92);
+            this.buttonUserManagement.Name = "buttonUserManagement";
+            this.buttonUserManagement.Size = new System.Drawing.Size(275, 40);
+            this.buttonUserManagement.TabIndex = 2;
+            this.buttonUserManagement.Text = "User Management";
+            this.buttonUserManagement.UseVisualStyleBackColor = true;
+            this.buttonUserManagement.Click += new System.EventHandler(this.buttonUserManagement_Click);
             // 
             // label1
             // 
@@ -192,7 +197,7 @@
             this.textBoxDescription.Location = new System.Drawing.Point(228, 380);
             this.textBoxDescription.Multiline = true;
             this.textBoxDescription.Name = "textBoxDescription";
-            this.textBoxDescription.Size = new System.Drawing.Size(368, 124);
+            this.textBoxDescription.Size = new System.Drawing.Size(368, 69);
             this.textBoxDescription.TabIndex = 9;
             // 
             // buttonCancel
@@ -244,6 +249,7 @@
             // 
             this.textBoxReportedByUser.Location = new System.Drawing.Point(228, 290);
             this.textBoxReportedByUser.Name = "textBoxReportedByUser";
+            this.textBoxReportedByUser.ReadOnly = true;
             this.textBoxReportedByUser.Size = new System.Drawing.Size(368, 22);
             this.textBoxReportedByUser.TabIndex = 6;
             // 
@@ -254,11 +260,31 @@
             this.textBoxSubject.Size = new System.Drawing.Size(368, 22);
             this.textBoxSubject.TabIndex = 4;
             // 
+            // comboBoxTicketStatus
+            // 
+            this.comboBoxTicketStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxTicketStatus.FormattingEnabled = true;
+            this.comboBoxTicketStatus.Location = new System.Drawing.Point(228, 455);
+            this.comboBoxTicketStatus.Name = "comboBoxTicketStatus";
+            this.comboBoxTicketStatus.Size = new System.Drawing.Size(368, 24);
+            this.comboBoxTicketStatus.TabIndex = 13;
+            // 
+            // labelTicketStatus
+            // 
+            this.labelTicketStatus.AutoSize = true;
+            this.labelTicketStatus.Location = new System.Drawing.Point(30, 455);
+            this.labelTicketStatus.Name = "labelTicketStatus";
+            this.labelTicketStatus.Size = new System.Drawing.Size(84, 16);
+            this.labelTicketStatus.TabIndex = 14;
+            this.labelTicketStatus.Text = "Ticket Status";
+            // 
             // AddIncident
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(893, 592);
+            this.Controls.Add(this.labelTicketStatus);
+            this.Controls.Add(this.comboBoxTicketStatus);
             this.Controls.Add(this.textBoxSubject);
             this.Controls.Add(this.textBoxReportedByUser);
             this.Controls.Add(this.comboBoxPriority);
@@ -278,9 +304,9 @@
             this.Controls.Add(this.labelDateTime);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.buttonUserManagement);
+            this.Controls.Add(this.buttonIncidentManagement);
+            this.Controls.Add(this.buttonDashboard);
             this.Name = "AddIncident";
             this.Text = "AddIncident";
             this.ResumeLayout(false);
@@ -290,9 +316,9 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button buttonDashboard;
+        private System.Windows.Forms.Button buttonIncidentManagement;
+        private System.Windows.Forms.Button buttonUserManagement;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label labelDateTime;
@@ -313,5 +339,7 @@
         private System.Windows.Forms.ComboBox comboBoxPriority;
         private System.Windows.Forms.TextBox textBoxReportedByUser;
         private System.Windows.Forms.TextBox textBoxSubject;
+        private System.Windows.Forms.ComboBox comboBoxTicketStatus;
+        private System.Windows.Forms.Label labelTicketStatus;
     }
 }

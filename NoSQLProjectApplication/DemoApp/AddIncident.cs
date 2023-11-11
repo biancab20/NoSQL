@@ -16,19 +16,45 @@ namespace DemoApp
 {
     public partial class AddIncident : Form
     {
+        private User loggedInUser;
         private TicketService ticketService;
 
-        public AddIncident()
+        public AddIncident(User user)
         {
             InitializeComponent();
-            // Tell form which user is logged in for form
+            loggedInUser = user;
             ClearFormData();
-            FillComboBoxesData();
+            FillBoxesData();
+
+            if (loggedInUser.Role == Role.ServiceDesk)
+            {
+                StyleServiceDesk();
+            }
+            else
+            {
+                StyleOther();
+            }
 
             ticketService = new TicketService();
         }
 
-        private void FillComboBoxesData()
+        private void StyleServiceDesk()
+        {
+            labelTopic.Text = "Update incident ticket";
+            textBoxReportedByUser.ReadOnly = false;
+            labelTicketStatus.Visible = true;
+            comboBoxTicketStatus.Visible = true;
+        }
+
+        private void StyleOther()
+        {
+            labelTopic.Text = "Create new incident ticket";
+            textBoxReportedByUser.ReadOnly = true;
+            labelTicketStatus.Visible = false;
+            comboBoxTicketStatus.Visible = false;
+        }
+
+        private void FillBoxesData()
         {
             foreach (int types in IncidentType.GetValues(typeof(IncidentType)))
             {
@@ -38,6 +64,12 @@ namespace DemoApp
             {
                 comboBoxPriority.Items.Add(Enum.GetName(typeof(Priority), priority));
             }
+            foreach (int status in TicketStatus.GetValues(typeof(TicketStatus)))
+            {
+                comboBoxTicketStatus.Items.Add(Enum.GetName(typeof(TicketStatus), status));
+            }
+
+            textBoxReportedByUser.Text = loggedInUser.FirstName;
         }
 
         private void ClearFormData()
@@ -50,7 +82,10 @@ namespace DemoApp
 
         private void buttonCancel_Click(object sender, EventArgs e)
         {
-            // Go back to previous screen or Dashboard
+            this.Hide();
+            Dashboard dashboard = new Dashboard();
+            dashboard.ShowDialog();
+            this.Close();
         }
 
         private void buttonSubmitTicket_Click(object sender, EventArgs e)
@@ -69,7 +104,7 @@ namespace DemoApp
                     ticket.DateTimeReported = dateTimePickerReported.Value;
                     ticket.Subject = textBoxSubject.Text;
                     ticket.IncidentType = (IncidentType)comboBoxIncidentType.SelectedIndex;
-                    ticket.ReportedByUser = textBoxReportedByUser.Text; // Tell form which user is currently logged in
+                    ticket.ReportedByUser = textBoxReportedByUser.Text;
                     ticket.Priority = (Priority)comboBoxPriority.SelectedIndex;
                     ticket.DeadlineFollowUp = dateTimePickerDeadlineFollowUp.Value;
                     ticket.Description = textBoxDescription.Text;
@@ -98,7 +133,27 @@ namespace DemoApp
                 !string.IsNullOrEmpty(textBoxReportedByUser.Text) &&
                 comboBoxPriority.SelectedItem != null &&
                 !string.IsNullOrEmpty(textBoxDescription.Text);
-                
+        }
+
+        private void buttonDashboard_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Dashboard dashboard = new Dashboard();
+            dashboard.ShowDialog();
+            this.Close();
+        }
+
+        private void buttonIncidentManagement_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonUserManagement_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            UserManagement userManagement = new UserManagement();
+            userManagement.ShowDialog();
+            this.Close();
         }
     }
 }

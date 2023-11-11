@@ -51,10 +51,21 @@ namespace DAL
                 .ToList();
         }
 
-
         public void CreateTicket(Ticket ticket)
         {
             tickets.InsertOne(ticket);
+        }
+
+        public void UpdateTicket(string ticketId, UpdateDefinition<Ticket> updateDefinition)
+        {
+            var filter = Builders<Ticket>.Filter.Eq(t => t.ObjectId, new ObjectId(ticketId));
+            tickets.UpdateOne(filter, updateDefinition);
+        }
+
+        public void DeleteTicket(string ticketId)
+        {
+            var filter = Builders<Ticket>.Filter.Eq(t => t.ObjectId, new ObjectId(ticketId));
+            tickets.DeleteOne(filter);
         }
     }
 }
