@@ -28,13 +28,16 @@ namespace DemoApp
 
         private void button_login_Click(object sender, EventArgs e)
         {
-            if((this.textBox_username.Text == "") || (this.textBox_password.Text == ""))
+            if(string.IsNullOrWhiteSpace(this.textBox_username.Text) || string.IsNullOrWhiteSpace(this.textBox_password.Text))
             {
                 MessageBox.Show("Log in failed! Please enter your username and password!", "Message", MessageBoxButtons.OK);
             }
             else
             {
-                user = ValidateUserCreditentials(userService);
+                string username = this.textBox_username.Text;
+                string password = this.textBox_password.Text;
+
+                user = ValidateUserCreditentials(username, password);
                 if(user != null)
                 {
                     Form1 form = new Form1();
@@ -45,17 +48,17 @@ namespace DemoApp
             }
         }
         
-        User ValidateUserCreditentials(UserService userService)
+        User ValidateUserCreditentials(string username, string password)
         {
             try
             {
-                user = userService.GetUserByUserName(this.textBox_username.Text);
+                user = userService.GetUserByUserName(username);
 
                 if (user != null)
                 {
-                    User userByPassword = userService.GetUserByPassword(userService.Hash(this.textBox_password.Text));
+                    User userByPassword = userService.GetUserByPassword(password);
 
-                    if (userByPassword != null && user.Id == userByPassword.Id)
+                    if (userByPassword != null && user.Password == userByPassword.Password)
                     {
                         return user;
                     }
@@ -69,9 +72,13 @@ namespace DemoApp
                     MessageBox.Show("Incorrect username. Please try again!", "Message", MessageBoxButtons.OK);
                 }
             }
-            catch
+            catch(Exception ex)
             {
-                MessageBox.Show("An error occurred. Please try again later.", "Message", MessageBoxButtons.OK);
+               // Exception exception;
+                //Console.WriteLine(ex);
+
+                MessageBox.Show(ex.ToString());
+                //MessageBox.Show("An error occurred. Please try again later.", "Message", MessageBoxButtons.OK);
             }
 
             return null;

@@ -47,7 +47,7 @@ namespace DAL
         }
         public User GetUserByPassword(string password)
         {
-            // Hash the provided passcode to match it with the stored hashed password.
+            
             string hashedPasscode = Hash(password);
 
             var filter = Builders<User>.Filter.Eq(u => u.Password, hashedPasscode);
