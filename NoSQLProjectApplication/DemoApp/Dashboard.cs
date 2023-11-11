@@ -8,6 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using LiveCharts;
+using LiveCharts.Wpf;
+
 
 namespace DemoApp
 {
@@ -21,6 +24,7 @@ namespace DemoApp
             InitializeComponent();
         }
 
+<<<<<<< HEAD
         public Dashboard(User user)
         {
             this.user = user;
@@ -28,7 +32,8 @@ namespace DemoApp
 
         private void Dashboard_Load(object sender, EventArgs e)
         {
+=======
+>>>>>>> main
 
-        }
     }
 }
