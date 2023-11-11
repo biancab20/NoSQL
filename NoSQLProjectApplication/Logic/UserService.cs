@@ -40,5 +40,9 @@ namespace Logic
         }
         public User GetUserByUserName(string username) => userDAO.GetUserByUserName(username);
         public User GetUserByPassword(string password) => userDAO.GetUserByPassword(password);
+        public void UpdatePassword(string username, string password)
+        {
+            userDAO.UpdatePassword(username, password);
+        }
     }
 }
