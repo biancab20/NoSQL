@@ -31,5 +31,7 @@ namespace Model
         [BsonElement("status")]
         [BsonRepresentation(BsonType.String)]
         public TicketStatus Status { get; set; }
+
+        public string AssignedUserId { get; set; } 
     }
 }

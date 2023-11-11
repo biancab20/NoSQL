@@ -47,14 +47,22 @@ namespace DemoApp
             // Get all users from the service
             allUsers = userService.GetAllUsers();
 
+            TicketService ticketService = new TicketService();
+
             // Clear existing items in ListView
             listViewUsers.Items.Clear();
 
+            foreach (var user in allUsers)
+            {
+                user.Tickets = ticketService.GetTicketsByUserId(user.Id.ToString());
+            }
 
             // Populate the ListView with user information
             for (int i = 0; i < allUsers.Count; i++)
             {
                 var user = allUsers[i];
+
+                int totalTickets = user.Tickets.Count;
 
                 // Assign a numerical ID based on the position in the list
                 int numericId = i + 1;
@@ -63,7 +71,7 @@ namespace DemoApp
                 item.SubItems.Add(user.FirstName);
                 item.SubItems.Add(user.LastName);
                 item.SubItems.Add(user.Email);
-                item.SubItems.Add(user.Ticket.ToString());
+                item.SubItems.Add(totalTickets.ToString());
 
                 listViewUsers.Items.Add(item);
             }
@@ -92,7 +100,7 @@ namespace DemoApp
                 item.SubItems.Add(user.FirstName);
                 item.SubItems.Add(user.LastName);
                 item.SubItems.Add(user.Email);
-                item.SubItems.Add(user.Ticket.ToString()); // Assuming Ticket is an int property
+                item.SubItems.Add(user.Tickets.Count.ToString()); // Assuming Ticket is an int property
 
                 listViewUsers.Items.Add(item);
             }

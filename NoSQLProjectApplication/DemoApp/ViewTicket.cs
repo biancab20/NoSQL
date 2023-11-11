@@ -82,43 +82,47 @@ namespace DemoApp
 
         private void PopulateListViewWithTickets(List<Ticket> tickets, string userRole, string currentUsername)
         {
-        
             listViewTickets.Items.Clear();
 
             for (int i = 0; i < tickets.Count; i++)
             {
                 var ticket = tickets[i];
 
-                if (userRole == "ServiceDesk")
+                // Check if the essential fields are not empty
+                if (!string.IsNullOrEmpty(ticket.ReportedByUser) && !string.IsNullOrEmpty(ticket.Subject))
                 {
-                    int numericId = i + 1;
+                    if (userRole == "ServiceDesk")
+                    {
+                        int numericId = i + 1;
 
-                    ListViewItem item = new ListViewItem(numericId.ToString());
-                    item.SubItems.Add(ticket.ReportedByUser);
-                    item.SubItems.Add(ticket.Priority.ToString());
-                    item.SubItems.Add(ticket.Subject);
-                    item.SubItems.Add(ticket.Description);
-                    item.SubItems.Add(ticket.DeadlineFollowUp.ToString("yyyy-MM-dd HH:mm:ss"));
-                    item.SubItems.Add(ticket.Status.ToString());
+                        ListViewItem item = new ListViewItem(numericId.ToString());
+                        item.SubItems.Add(ticket.ReportedByUser);
+                        item.SubItems.Add(ticket.Priority.ToString());
+                        item.SubItems.Add(ticket.Subject);
+                        item.SubItems.Add(ticket.Description);
+                        item.SubItems.Add(ticket.DeadlineFollowUp.ToString("yyyy-MM-dd HH:mm:ss"));
+                        item.SubItems.Add(ticket.Status.ToString());
 
-                    listViewTickets.Items.Add(item);
-                }
-                else if (userRole == "Other" && ticket.ReportedByUser == currentUsername)
-                {
-                    int numericId = i + 1;
+                        listViewTickets.Items.Add(item);
+                    }
+                    else if (userRole == "Other" && ticket.ReportedByUser == currentUsername)
+                    {
+                        int numericId = i + 1;
 
-                    ListViewItem item = new ListViewItem(numericId.ToString());
-                    item.SubItems.Add(ticket.ReportedByUser);
-                    item.SubItems.Add(ticket.Priority.ToString());
-                    item.SubItems.Add(ticket.Subject);
-                    item.SubItems.Add(ticket.Description);
-                    item.SubItems.Add(ticket.DeadlineFollowUp.ToString("yyyy-MM-dd HH:mm:ss"));
-                    item.SubItems.Add(ticket.Status.ToString());
+                        ListViewItem item = new ListViewItem(numericId.ToString());
+                        item.SubItems.Add(ticket.ReportedByUser);
+                        item.SubItems.Add(ticket.Priority.ToString());
+                        item.SubItems.Add(ticket.Subject);
+                        item.SubItems.Add(ticket.Description);
+                        item.SubItems.Add(ticket.DeadlineFollowUp.ToString("yyyy-MM-dd HH:mm:ss"));
+                        item.SubItems.Add(ticket.Status.ToString());
 
-                    listViewTickets.Items.Add(item);
+                        listViewTickets.Items.Add(item);
+                    }
                 }
             }
         }
+
 
         private void btnSearch_Click(object sender, EventArgs e)
         {

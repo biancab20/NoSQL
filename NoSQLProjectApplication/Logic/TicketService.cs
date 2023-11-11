@@ -37,5 +37,10 @@ namespace Logic
         {
             ticketDAO.CreateTicket(ticket);
         }
+
+        public List<Ticket> GetTicketsByUserId(string userId)
+        {
+            return GetAllTicket().Where(ticket => ticket.AssignedUserId == userId).ToList();
+        }
     }
 }
