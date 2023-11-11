@@ -224,6 +224,7 @@
             // 
             // comboBoxIncidentType
             // 
+            this.comboBoxIncidentType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxIncidentType.FormattingEnabled = true;
             this.comboBoxIncidentType.Location = new System.Drawing.Point(228, 260);
             this.comboBoxIncidentType.Name = "comboBoxIncidentType";
@@ -232,6 +233,7 @@
             // 
             // comboBoxPriority
             // 
+            this.comboBoxPriority.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxPriority.FormattingEnabled = true;
             this.comboBoxPriority.Location = new System.Drawing.Point(228, 320);
             this.comboBoxPriority.Name = "comboBoxPriority";

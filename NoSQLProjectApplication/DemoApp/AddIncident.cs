@@ -8,6 +8,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 using Logic;
 using Model;
 
@@ -61,25 +62,43 @@ namespace DemoApp
         {
             try
             {
-                Ticket ticket = new Ticket();
+                if(CheckForm())
+                {
+                    Ticket ticket = new Ticket();
 
-                ticket.DateTimeReported = dateTimePickerReported.Value;
-                ticket.Subject = textBoxSubject.Text;
-                ticket.IncidentType = (IncidentType)comboBoxIncidentType.SelectedIndex;
-                ticket.ReportedByUser = textBoxReportedByUser.Text; // Tell form which user is currently logged in
-                ticket.Priority = (Priority)comboBoxPriority.SelectedIndex;
-                ticket.DeadlineFollowUp = dateTimePickerDeadlineFollowUp.Value;
-                ticket.Description = textBoxDescription.Text;
-                ticket.Status = TicketStatus.Unresolved;
+                    ticket.DateTimeReported = dateTimePickerReported.Value;
+                    ticket.Subject = textBoxSubject.Text;
+                    ticket.IncidentType = (IncidentType)comboBoxIncidentType.SelectedIndex;
+                    ticket.ReportedByUser = textBoxReportedByUser.Text; // Tell form which user is currently logged in
+                    ticket.Priority = (Priority)comboBoxPriority.SelectedIndex;
+                    ticket.DeadlineFollowUp = dateTimePickerDeadlineFollowUp.Value;
+                    ticket.Description = textBoxDescription.Text;
+                    ticket.Status = TicketStatus.Unresolved;
 
-                ticketService.CreateTicket(ticket);
-                MessageBox.Show("Ticket has been created!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //this.Close();
+                    ticketService.CreateTicket(ticket);
+                    MessageBox.Show("Ticket has been created!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Please fill in all the fields.", "Erorr", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             catch (Exception exception)
             {
                 MessageBox.Show(exception.ToString());
             }
+        }
+
+        private bool CheckForm()
+        {
+            return
+                !string.IsNullOrEmpty(textBoxSubject.Text) &&
+                comboBoxIncidentType.SelectedItem != null &&
+                !string.IsNullOrEmpty(textBoxReportedByUser.Text) &&
+                comboBoxPriority.SelectedItem != null &&
+                !string.IsNullOrEmpty(textBoxDescription.Text);
+                
         }
     }
 }
