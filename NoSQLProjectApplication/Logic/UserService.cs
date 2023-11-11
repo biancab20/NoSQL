@@ -15,35 +15,9 @@ namespace Logic
     {
         UserDAO userDAO;
 
-        User currentUser;
-
-        public void SetCurrentUser(User user)
-        {
-            currentUser = user;
-        }
-
-        public string GetCurrentUserRole()
-        {
-            if (currentUser != null)
-            {
-                return currentUser.Role.ToString();
-            }
-
-            return null;
-        }
-
         public UserService()
         {
             userDAO = new UserDAO();
-
-            currentUser = new User
-            {
-                FirstName = "John",
-                LastName = "Doe",
-                Username = "john.doe",
-                Password = "hashed_password",
-                Role = Role.ServiceDesk
-            };
 
         }
         public List<User> GetAllUsers()

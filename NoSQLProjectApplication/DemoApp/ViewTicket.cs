@@ -72,16 +72,13 @@ namespace DemoApp
 
         private void LoadAllTickets()
         {
-            string userRole = userService.GetCurrentUserRole();
-
-            //string currentUsername = userService.GetCurrentUsername();
 
             allTickets = ticketService.GetAllTicket();
 
             listViewTickets.Items.Clear();
 
             // Populate based on btnUser role
-           // PopulateListViewWithTickets(allTickets, userRole, currentUsername);
+            PopulateListViewWithTickets(allTickets, loggedInUser.Role.ToString(), loggedInUser.Username);
         }
 
         private void PopulateListViewWithTickets(List<Ticket> tickets, string userRole, string currentUsername)
