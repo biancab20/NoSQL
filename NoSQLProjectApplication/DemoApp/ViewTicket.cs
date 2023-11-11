@@ -22,6 +22,21 @@ namespace DemoApp
         private User loggedInUser;
 
 
+
+        private void StyleServiceDesk()
+        {
+            btnUser.Visible = true;
+            buttonDeleteIncident.Visible = true;
+            buttonUpdateIncident.Visible = true;
+        }
+
+        private void StyleOther()
+        {
+            btnUser.Visible = false;
+            buttonDeleteIncident.Visible = false;
+            buttonUpdateIncident.Visible = false;
+        }
+
         public ViewTicket(User user)
         {
             InitializeComponent();
@@ -43,10 +58,20 @@ namespace DemoApp
             listViewTickets.Columns.Add("Deadline", 120, HorizontalAlignment.Left);
             listViewTickets.Columns.Add("Status", 120, HorizontalAlignment.Left);
 
-            LoadAllTickets();
             listViewTickets.SelectedIndexChanged += listViewTickets_SelectedIndexChanged;
 
             ticketFilterService = new TicketFilterService(allTickets);
+
+            if (loggedInUser.Role == Role.ServiceDesk)
+            {
+                StyleServiceDesk();
+            }
+            else
+            {
+                StyleOther();
+            }
+
+            LoadAllTickets();
         }
 
         private void listViewTickets_SelectedIndexChanged(object sender, EventArgs e)
@@ -104,6 +129,8 @@ namespace DemoApp
                         item.SubItems.Add(ticket.DeadlineFollowUp.ToString("yyyy-MM-dd HH:mm:ss"));
                         item.SubItems.Add(ticket.Status.ToString());
 
+                        item.Tag = ticket.ObjectId.ToString();
+
                         listViewTickets.Items.Add(item);
                     }
                     else if (userRole == "Other" && ticket.ReportedByUser == currentUsername)
@@ -148,6 +175,30 @@ namespace DemoApp
             Dashboard dashboard = new Dashboard(loggedInUser);
             dashboard.ShowDialog();
             this.Close();
+        }
+
+        private void btnAddIncident_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            AddIncident addIncident = new AddIncident(loggedInUser);
+            addIncident.ShowDialog();
+            this.Close();
+        }
+
+        private void buttonDeleteIncident_Click(object sender, EventArgs e)
+        {
+            if (listViewTickets.SelectedItems.Count > 0)
+            {
+                string ticketId = listViewTickets.SelectedItems[0].Tag.ToString();
+
+                ticketService.DeleteTicket(ticketId);
+                MessageBox.Show("Ticket has been deleted!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void buttonUpdateIncident_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

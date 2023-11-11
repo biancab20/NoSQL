@@ -28,11 +28,6 @@ namespace Logic
             return ticketDAO.GetAllTicket();
         }
 
-        //public int GetNewTicketId()
-        //{ 
-        //    return ticketDAO.GetNewTicketId();
-        //}
-
         public void CreateTicket(Ticket ticket)
         {
             ticketDAO.CreateTicket(ticket);
@@ -41,6 +36,11 @@ namespace Logic
         public List<Ticket> GetTicketsByUserId(string userId)
         {
             return GetAllTicket().Where(ticket => ticket.AssignedUserId == userId).ToList();
+        }
+
+        public bool DeleteTicket(string ticketId) 
+        {
+            return ticketDAO.DeleteTicket(ticketId);
         }
     }
 }

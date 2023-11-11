@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserManagement));
             this.listViewUsers = new System.Windows.Forms.ListView();
             this.label1 = new System.Windows.Forms.Label();
             this.txtFilterByEmail = new System.Windows.Forms.TextBox();
@@ -38,6 +39,8 @@
             this.user = new System.Windows.Forms.Button();
             this.incident = new System.Windows.Forms.Button();
             this.dashboard = new System.Windows.Forms.Button();
+            this.TheGardenGroup_Logo = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.TheGardenGroup_Logo)).BeginInit();
             this.SuspendLayout();
             // 
             // listViewUsers
@@ -106,7 +109,7 @@
             this.label3.TabIndex = 8;
             this.label3.Text = "NoDesk";
             // 
-            // btnUser
+            // user
             // 
             this.user.Location = new System.Drawing.Point(568, 72);
             this.user.Name = "user";
@@ -135,11 +138,23 @@
             this.dashboard.UseVisualStyleBackColor = true;
             this.dashboard.Click += new System.EventHandler(this.dashboard_Click);
             // 
+            // TheGardenGroup_Logo
+            // 
+            this.TheGardenGroup_Logo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("TheGardenGroup_Logo.BackgroundImage")));
+            this.TheGardenGroup_Logo.ErrorImage = ((System.Drawing.Image)(resources.GetObject("TheGardenGroup_Logo.ErrorImage")));
+            this.TheGardenGroup_Logo.InitialImage = ((System.Drawing.Image)(resources.GetObject("TheGardenGroup_Logo.InitialImage")));
+            this.TheGardenGroup_Logo.Location = new System.Drawing.Point(12, 12);
+            this.TheGardenGroup_Logo.Name = "TheGardenGroup_Logo";
+            this.TheGardenGroup_Logo.Size = new System.Drawing.Size(195, 54);
+            this.TheGardenGroup_Logo.TabIndex = 21;
+            this.TheGardenGroup_Logo.TabStop = false;
+            // 
             // UserManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(847, 530);
+            this.Controls.Add(this.TheGardenGroup_Logo);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.user);
@@ -152,6 +167,7 @@
             this.Controls.Add(this.listViewUsers);
             this.Name = "UserManagement";
             this.Text = "UserManagement";
+            ((System.ComponentModel.ISupportInitialize)(this.TheGardenGroup_Logo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -169,5 +185,6 @@
         private System.Windows.Forms.Button user;
         private System.Windows.Forms.Button incident;
         private System.Windows.Forms.Button dashboard;
+        private System.Windows.Forms.PictureBox TheGardenGroup_Logo;
     }
 }

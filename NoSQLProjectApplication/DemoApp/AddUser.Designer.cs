@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddUser));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -42,6 +43,8 @@
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.cmbRole = new System.Windows.Forms.ComboBox();
             this.addUserButton = new System.Windows.Forms.Button();
+            this.TheGardenGroup_Logo = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.TheGardenGroup_Logo)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -102,7 +105,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(60, 47);
+            this.label7.Location = new System.Drawing.Point(60, 69);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(139, 32);
             this.label7.TabIndex = 6;
@@ -161,11 +164,23 @@
             this.addUserButton.UseVisualStyleBackColor = true;
             this.addUserButton.Click += new System.EventHandler(this.addUserButton_Click);
             // 
+            // TheGardenGroup_Logo
+            // 
+            this.TheGardenGroup_Logo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("TheGardenGroup_Logo.BackgroundImage")));
+            this.TheGardenGroup_Logo.ErrorImage = ((System.Drawing.Image)(resources.GetObject("TheGardenGroup_Logo.ErrorImage")));
+            this.TheGardenGroup_Logo.InitialImage = ((System.Drawing.Image)(resources.GetObject("TheGardenGroup_Logo.InitialImage")));
+            this.TheGardenGroup_Logo.Location = new System.Drawing.Point(38, 12);
+            this.TheGardenGroup_Logo.Name = "TheGardenGroup_Logo";
+            this.TheGardenGroup_Logo.Size = new System.Drawing.Size(195, 54);
+            this.TheGardenGroup_Logo.TabIndex = 21;
+            this.TheGardenGroup_Logo.TabStop = false;
+            // 
             // AddUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(277, 381);
+            this.Controls.Add(this.TheGardenGroup_Logo);
             this.Controls.Add(this.addUserButton);
             this.Controls.Add(this.cmbRole);
             this.Controls.Add(this.txtPassword);
@@ -182,6 +197,7 @@
             this.Controls.Add(this.label1);
             this.Name = "AddUser";
             this.Text = "AddUser";
+            ((System.ComponentModel.ISupportInitialize)(this.TheGardenGroup_Logo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -203,5 +219,6 @@
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.ComboBox cmbRole;
         private System.Windows.Forms.Button addUserButton;
+        private System.Windows.Forms.PictureBox TheGardenGroup_Logo;
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ViewTicket));
             this.btnUser = new System.Windows.Forms.Button();
             this.incident = new System.Windows.Forms.Button();
             this.dashboard = new System.Windows.Forms.Button();
@@ -38,12 +39,16 @@
             this.btnAddIncident = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
+            this.buttonDeleteIncident = new System.Windows.Forms.Button();
+            this.buttonUpdateIncident = new System.Windows.Forms.Button();
+            this.TheGardenGroup_Logo = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.TheGardenGroup_Logo)).BeginInit();
             this.SuspendLayout();
             // 
             // btnUser
             // 
             this.btnUser.Location = new System.Drawing.Point(566, 91);
-            this.btnUser.Name = "user";
+            this.btnUser.Name = "btnUser";
             this.btnUser.Size = new System.Drawing.Size(275, 40);
             this.btnUser.TabIndex = 10;
             this.btnUser.Text = "User Management";
@@ -117,6 +122,7 @@
             this.btnAddIncident.TabIndex = 15;
             this.btnAddIncident.Text = "Add Incident";
             this.btnAddIncident.UseVisualStyleBackColor = true;
+            this.btnAddIncident.Click += new System.EventHandler(this.btnAddIncident_Click);
             // 
             // txtSearch
             // 
@@ -135,11 +141,45 @@
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
+            // buttonDeleteIncident
+            // 
+            this.buttonDeleteIncident.Location = new System.Drawing.Point(4, 434);
+            this.buttonDeleteIncident.Name = "buttonDeleteIncident";
+            this.buttonDeleteIncident.Size = new System.Drawing.Size(219, 36);
+            this.buttonDeleteIncident.TabIndex = 18;
+            this.buttonDeleteIncident.Text = "Delete incident";
+            this.buttonDeleteIncident.UseVisualStyleBackColor = true;
+            this.buttonDeleteIncident.Click += new System.EventHandler(this.buttonDeleteIncident_Click);
+            // 
+            // buttonUpdateIncident
+            // 
+            this.buttonUpdateIncident.Location = new System.Drawing.Point(314, 434);
+            this.buttonUpdateIncident.Name = "buttonUpdateIncident";
+            this.buttonUpdateIncident.Size = new System.Drawing.Size(219, 36);
+            this.buttonUpdateIncident.TabIndex = 19;
+            this.buttonUpdateIncident.Text = "Update incident";
+            this.buttonUpdateIncident.UseVisualStyleBackColor = true;
+            this.buttonUpdateIncident.Click += new System.EventHandler(this.buttonUpdateIncident_Click);
+            // 
+            // TheGardenGroup_Logo
+            // 
+            this.TheGardenGroup_Logo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("TheGardenGroup_Logo.BackgroundImage")));
+            this.TheGardenGroup_Logo.ErrorImage = ((System.Drawing.Image)(resources.GetObject("TheGardenGroup_Logo.ErrorImage")));
+            this.TheGardenGroup_Logo.InitialImage = ((System.Drawing.Image)(resources.GetObject("TheGardenGroup_Logo.InitialImage")));
+            this.TheGardenGroup_Logo.Location = new System.Drawing.Point(12, 12);
+            this.TheGardenGroup_Logo.Name = "TheGardenGroup_Logo";
+            this.TheGardenGroup_Logo.Size = new System.Drawing.Size(195, 54);
+            this.TheGardenGroup_Logo.TabIndex = 20;
+            this.TheGardenGroup_Logo.TabStop = false;
+            // 
             // ViewTicket
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(853, 482);
+            this.Controls.Add(this.TheGardenGroup_Logo);
+            this.Controls.Add(this.buttonUpdateIncident);
+            this.Controls.Add(this.buttonDeleteIncident);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.btnAddIncident);
@@ -152,6 +192,7 @@
             this.Controls.Add(this.dashboard);
             this.Name = "ViewTicket";
             this.Text = "ViewTicket";
+            ((System.ComponentModel.ISupportInitialize)(this.TheGardenGroup_Logo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -169,5 +210,8 @@
         private System.Windows.Forms.Button btnAddIncident;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.Button buttonDeleteIncident;
+        private System.Windows.Forms.Button buttonUpdateIncident;
+        private System.Windows.Forms.PictureBox TheGardenGroup_Logo;
     }
 }

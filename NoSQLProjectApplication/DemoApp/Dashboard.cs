@@ -22,8 +22,26 @@ namespace DemoApp
         {
             InitializeComponent();
             this.loggedInUser = user;
+
+            if (loggedInUser.Role == Role.ServiceDesk)
+            {
+                StyleServiceDesk();
+            }
+            else
+            {
+                StyleOther();
+            }
         }
 
+        private void StyleServiceDesk()
+        {
+            btnUser.Visible = true;
+        }
+
+        private void StyleOther()
+        {
+            btnUser.Visible = false;
+        }
 
         private void Dashboard_Load(object sender, EventArgs e)
         {

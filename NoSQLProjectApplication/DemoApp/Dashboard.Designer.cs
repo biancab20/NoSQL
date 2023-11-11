@@ -28,11 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btnUser = new System.Windows.Forms.Button();
             this.btnIncident = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.TheGardenGroup_Logo = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.TheGardenGroup_Logo)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -84,11 +87,23 @@
             this.button1.Text = "Dashboard";
             this.button1.UseVisualStyleBackColor = true;
             // 
+            // TheGardenGroup_Logo
+            // 
+            this.TheGardenGroup_Logo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("TheGardenGroup_Logo.BackgroundImage")));
+            this.TheGardenGroup_Logo.ErrorImage = ((System.Drawing.Image)(resources.GetObject("TheGardenGroup_Logo.ErrorImage")));
+            this.TheGardenGroup_Logo.InitialImage = ((System.Drawing.Image)(resources.GetObject("TheGardenGroup_Logo.InitialImage")));
+            this.TheGardenGroup_Logo.Location = new System.Drawing.Point(12, 12);
+            this.TheGardenGroup_Logo.Name = "TheGardenGroup_Logo";
+            this.TheGardenGroup_Logo.Size = new System.Drawing.Size(195, 54);
+            this.TheGardenGroup_Logo.TabIndex = 21;
+            this.TheGardenGroup_Logo.TabStop = false;
+            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(863, 439);
+            this.Controls.Add(this.TheGardenGroup_Logo);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnUser);
@@ -96,6 +111,7 @@
             this.Controls.Add(this.button1);
             this.Name = "Dashboard";
             this.Text = "Dashboard";
+            ((System.ComponentModel.ISupportInitialize)(this.TheGardenGroup_Logo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -108,5 +124,6 @@
         private System.Windows.Forms.Button btnUser;
         private System.Windows.Forms.Button btnIncident;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.PictureBox TheGardenGroup_Logo;
     }
 }

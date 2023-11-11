@@ -29,6 +29,7 @@ namespace DemoApp
             if (loggedInUser.Role == Role.ServiceDesk)
             {
                 StyleServiceDesk();
+                PopulateFormForUpdate(ticketToUpdate);
             }
             else
             {
@@ -44,6 +45,8 @@ namespace DemoApp
             textBoxReportedByUser.ReadOnly = false;
             labelTicketStatus.Visible = true;
             comboBoxTicketStatus.Visible = true;
+            buttonUpdateTicket.Visible = true;
+            buttonSubmitTicket.Visible = false;
         }
 
         private void StyleOther()
@@ -52,6 +55,7 @@ namespace DemoApp
             textBoxReportedByUser.ReadOnly = true;
             labelTicketStatus.Visible = false;
             comboBoxTicketStatus.Visible = false;
+            buttonUpdateTicket.Visible = false;
         }
 
         private void FillBoxesData()
@@ -92,7 +96,6 @@ namespace DemoApp
         {
             IncidentAdd();
         }
-
         private void IncidentAdd()
         {
             try
@@ -112,7 +115,11 @@ namespace DemoApp
 
                     ticketService.CreateTicket(ticket);
                     MessageBox.Show("Ticket has been created!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //this.Close();
+                    
+                    this.Hide();
+                    ViewTicket viewticket = new ViewTicket(loggedInUser);
+                    viewticket.ShowDialog();
+                    this.Close();
                 }
                 else
                 {
@@ -125,6 +132,11 @@ namespace DemoApp
             }
         }
 
+        private void PopulateFormForUpdate(Ticket ticket)
+        {
+
+        }
+
         private bool CheckForm()
         {
             return
@@ -134,7 +146,6 @@ namespace DemoApp
                 comboBoxPriority.SelectedItem != null &&
                 !string.IsNullOrEmpty(textBoxDescription.Text);
         }
-
         private void buttonDashboard_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -145,7 +156,10 @@ namespace DemoApp
 
         private void buttonIncidentManagement_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            ViewTicket viewticket = new ViewTicket(loggedInUser);
+            viewticket.ShowDialog();
+            this.Close();
         }
 
         private void buttonUserManagement_Click(object sender, EventArgs e)
@@ -154,6 +168,11 @@ namespace DemoApp
             UserManagement userManagement = new UserManagement(loggedInUser);
             userManagement.ShowDialog();
             this.Close();
+        }
+
+        private void buttonUpdateTicket_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

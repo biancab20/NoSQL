@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddIncident));
             this.buttonDashboard = new System.Windows.Forms.Button();
             this.buttonIncidentManagement = new System.Windows.Forms.Button();
             this.buttonUserManagement = new System.Windows.Forms.Button();
@@ -54,6 +55,9 @@
             this.textBoxSubject = new System.Windows.Forms.TextBox();
             this.comboBoxTicketStatus = new System.Windows.Forms.ComboBox();
             this.labelTicketStatus = new System.Windows.Forms.Label();
+            this.buttonUpdateTicket = new System.Windows.Forms.Button();
+            this.TheGardenGroup_Logo = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.TheGardenGroup_Logo)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonDashboard
@@ -278,11 +282,34 @@
             this.labelTicketStatus.TabIndex = 14;
             this.labelTicketStatus.Text = "Ticket Status";
             // 
+            // buttonUpdateTicket
+            // 
+            this.buttonUpdateTicket.Location = new System.Drawing.Point(417, 510);
+            this.buttonUpdateTicket.Name = "buttonUpdateTicket";
+            this.buttonUpdateTicket.Size = new System.Drawing.Size(179, 52);
+            this.buttonUpdateTicket.TabIndex = 15;
+            this.buttonUpdateTicket.Text = "UPDATE TICKET";
+            this.buttonUpdateTicket.UseVisualStyleBackColor = true;
+            this.buttonUpdateTicket.Click += new System.EventHandler(this.buttonUpdateTicket_Click);
+            // 
+            // TheGardenGroup_Logo
+            // 
+            this.TheGardenGroup_Logo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("TheGardenGroup_Logo.BackgroundImage")));
+            this.TheGardenGroup_Logo.ErrorImage = ((System.Drawing.Image)(resources.GetObject("TheGardenGroup_Logo.ErrorImage")));
+            this.TheGardenGroup_Logo.InitialImage = ((System.Drawing.Image)(resources.GetObject("TheGardenGroup_Logo.InitialImage")));
+            this.TheGardenGroup_Logo.Location = new System.Drawing.Point(12, 12);
+            this.TheGardenGroup_Logo.Name = "TheGardenGroup_Logo";
+            this.TheGardenGroup_Logo.Size = new System.Drawing.Size(195, 54);
+            this.TheGardenGroup_Logo.TabIndex = 21;
+            this.TheGardenGroup_Logo.TabStop = false;
+            // 
             // AddIncident
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(893, 592);
+            this.Controls.Add(this.TheGardenGroup_Logo);
+            this.Controls.Add(this.buttonUpdateTicket);
             this.Controls.Add(this.labelTicketStatus);
             this.Controls.Add(this.comboBoxTicketStatus);
             this.Controls.Add(this.textBoxSubject);
@@ -309,6 +336,7 @@
             this.Controls.Add(this.buttonDashboard);
             this.Name = "AddIncident";
             this.Text = "AddIncident";
+            ((System.ComponentModel.ISupportInitialize)(this.TheGardenGroup_Logo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -341,5 +369,7 @@
         private System.Windows.Forms.TextBox textBoxSubject;
         private System.Windows.Forms.ComboBox comboBoxTicketStatus;
         private System.Windows.Forms.Label labelTicketStatus;
+        private System.Windows.Forms.Button buttonUpdateTicket;
+        private System.Windows.Forms.PictureBox TheGardenGroup_Logo;
     }
 }

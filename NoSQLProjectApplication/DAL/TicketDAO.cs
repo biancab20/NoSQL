@@ -62,10 +62,12 @@ namespace DAL
             tickets.UpdateOne(filter, updateDefinition);
         }
 
-        public void DeleteTicket(string ticketId)
+        public bool DeleteTicket(string ticketId)
         {
             var filter = Builders<Ticket>.Filter.Eq(t => t.ObjectId, new ObjectId(ticketId));
-            tickets.DeleteOne(filter);
+            var result = tickets.DeleteOne(filter);
+
+            return result.DeletedCount > 0;
         }
     }
 }
