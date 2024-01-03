@@ -159,7 +159,13 @@ namespace DemoApp
         private void PopulateFormForUpdate(Ticket ticket)
         {
             textBoxSubject.Text = ticket.Subject;
+            textBoxDescription.Text = ticket.Description;
             comboBoxIncidentType.SelectedItem = ticket.IncidentType.ToString();
+            comboBoxPriority.SelectedItem = ticket.Priority.ToString();
+            dateTimePickerReported.Value = ticket.DateTimeReported;
+            dateTimePickerDeadlineFollowUp.Value = ticket.DeadlineFollowUp;
+            comboBoxTicketStatus.SelectedItem = ticket.Status.ToString();
+            textBoxReportedByUser.Text = ticket.ReportedByUser;
         }
 
         private bool CheckForm()
@@ -197,25 +203,22 @@ namespace DemoApp
 
         private void buttonUpdateTicket_Click(object sender, EventArgs e)
         {
-
             try
             {
                 if (CheckForm())
                 {
-                    // Prepare the updated ticket information
                     var updateDefinition = Builders<Ticket>.Update
                         .Set(t => t.Subject, textBoxSubject.Text)
-                        .Set(t => t.IncidentType, (IncidentType)Enum.Parse(typeof(IncidentType), comboBoxIncidentType.SelectedItem.ToString()));
-                    
+                        .Set(t => t.Description, textBoxDescription.Text)
+                        .Set(t => t.IncidentType, (IncidentType)Enum.Parse(typeof(IncidentType), comboBoxIncidentType.SelectedItem.ToString()))
+                        .Set(t => t.Priority, (Priority)Enum.Parse(typeof(Priority), comboBoxPriority.SelectedItem.ToString()))
+                        .Set(t => t.DeadlineFollowUp, dateTimePickerDeadlineFollowUp.Value)
+                        .Set(t => t.Status, (TicketStatus)Enum.Parse(typeof(TicketStatus), comboBoxTicketStatus.SelectedItem.ToString()));
 
-            ticketService.UpdateTicket(ticketToUpdate.ObjectId.ToString(), updateDefinition);
+                    ticketService.UpdateTicket(ticketToUpdate.ObjectId.ToString(), updateDefinition);
 
                     MessageBox.Show("Ticket has been updated!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    // Refresh the ListView in the main form
-                    this.Hide();
-                    ViewTicket viewticket = new ViewTicket(loggedInUser);
-                    viewticket.ShowDialog();
                     this.Close();
                 }
                 else
