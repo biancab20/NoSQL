@@ -104,7 +104,8 @@ namespace DemoApp
         {
             allTickets = ticketService.GetAllTicket();
 
-            listViewTickets.Items.Clear();
+            //listViewTickets.Items.Clear();
+            ticketFilterService = new TicketFilterService(allTickets);
 
             // Populate based on btnUser role
             PopulateListViewWithTickets(allTickets, loggedInUser.Role.ToString(), $"{loggedInUser.FirstName} {loggedInUser.LastName}");
@@ -159,11 +160,19 @@ namespace DemoApp
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            string searchQuery = txtSearch.Text.ToLower();
+            string searchQuery = txtSearch.Text.ToLower().Trim();
 
-            List<Ticket> filteredTickets = ticketFilterService.FilterTickets(searchQuery, loggedInUser.Role.ToString(), loggedInUser.Username);
-
-            PopulateListViewWithTickets(filteredTickets, loggedInUser.Role.ToString(), loggedInUser.Username);
+            if (string.IsNullOrEmpty(searchQuery))
+            {
+                // If the search query is empty, load all tickets
+                LoadAllTickets();
+            }
+            else
+            {
+                // If there is a search query, filter the tickets
+                List<Ticket> filteredTickets = ticketFilterService.FilterTickets(searchQuery, loggedInUser.Role.ToString(), $"{loggedInUser.FirstName} {loggedInUser.LastName}");
+                PopulateListViewWithTickets(filteredTickets, loggedInUser.Role.ToString(), loggedInUser.Username);
+            }
         }
 
         private void user_Click(object sender, EventArgs e)
