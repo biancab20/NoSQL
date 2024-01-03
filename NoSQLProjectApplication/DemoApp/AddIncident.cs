@@ -25,6 +25,7 @@ namespace DemoApp
         {
             InitializeComponent();
             loggedInUser = user;
+            ticketService = new TicketService();
             ClearFormData();
             FillBoxesData();
 

@@ -180,10 +180,14 @@ namespace DemoApp
 
         private void btnAddIncident_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            //this.Hide();
+            //AddIncident addIncident = new AddIncident(loggedInUser);
+            //addIncident.ShowDialog();
+            //this.Close();
+
             AddIncident addIncident = new AddIncident(loggedInUser);
+            addIncident.FormClosed += (s, args) => LoadAllTickets();
             addIncident.ShowDialog();
-            this.Close();
         }
 
         private void buttonDeleteIncident_Click(object sender, EventArgs e)
