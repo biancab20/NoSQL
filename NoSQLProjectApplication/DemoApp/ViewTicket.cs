@@ -27,7 +27,7 @@ namespace DemoApp
             btnUser.Visible = true;
             buttonDeleteIncident.Visible = true;
             buttonUpdateIncident.Visible = true;
-            btnAddIncident.Visible = false;
+            //btnAddIncident.Visible = false;
             btnSearch.Visible = true;
             txtSearch.Visible = true;
         }
@@ -37,7 +37,7 @@ namespace DemoApp
             btnUser.Visible = false;
             buttonDeleteIncident.Visible = false;
             buttonUpdateIncident.Visible = false;
-            btnAddIncident.Visible = true;
+            //btnAddIncident.Visible = true;
             btnSearch.Visible = false;
             txtSearch.Visible = false;
         }

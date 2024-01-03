@@ -46,6 +46,10 @@ namespace DemoApp
             if (this.ticketToUpdate != null)
             {
                 PopulateFormForUpdate(this.ticketToUpdate);
+                buttonUpdateTicket.Visible = true;
+                buttonSubmitTicket.Visible = false;
+                comboBoxTicketStatus.Visible = true;
+                labelTicketStatus.Visible = true;
             }
             else
             {
@@ -59,9 +63,10 @@ namespace DemoApp
             labelTopic.Text = "Update incident ticket";
             textBoxReportedByUser.ReadOnly = false;
             labelTicketStatus.Visible = true;
-            comboBoxTicketStatus.Visible = true;
-            buttonUpdateTicket.Visible = true;
-            buttonSubmitTicket.Visible = false;
+            comboBoxTicketStatus.Visible = false;
+            labelTicketStatus.Visible = false;
+            buttonUpdateTicket.Visible = false;
+            buttonSubmitTicket.Visible = true;
             buttonUserManagement.Visible = true;
         }
 
