@@ -46,34 +46,54 @@ namespace DemoApp
 
         private void LoadAllUsers()
         {
-            // Get all users from the service
-            allUsers = userService.GetAllUsers();
+            //// Get all users from the service
+            //allUsers = userService.GetAllUsers();
 
+            //TicketService ticketService = new TicketService();
+
+            //// Clear existing items in ListView
+            //listViewUsers.Items.Clear();
+
+            //foreach (var user in allUsers)
+            //{
+            //    user.Tickets = ticketService.GetTicketsByUserId(user.Id.ToString());
+            //}
+
+            //// Populate the ListView with btnUser information
+            //for (int i = 0; i < allUsers.Count; i++)
+            //{
+            //    var user = allUsers[i];
+
+            //    int totalTickets = user.Tickets.Count;
+
+            //    // Assign a numerical ID based on the position in the list
+            //    int numericId = i + 1;
+
+            //    ListViewItem item = new ListViewItem(numericId.ToString()); // Numeric ID
+            //    item.SubItems.Add(user.FirstName);
+            //    item.SubItems.Add(user.LastName);
+            //    item.SubItems.Add(user.Email);
+            //    item.SubItems.Add(totalTickets.ToString());
+
+            //    listViewUsers.Items.Add(item);
+            //}
+
+            allUsers = userService.GetAllUsers();
             TicketService ticketService = new TicketService();
 
-            // Clear existing items in ListView
             listViewUsers.Items.Clear();
 
             foreach (var user in allUsers)
             {
-                user.Tickets = ticketService.GetTicketsByUserId(user.Id.ToString());
-            }
+                string userFullName = $"{user.FirstName} {user.LastName}";
+                var userTickets = ticketService.GetTicketsByUsername(userFullName); // Fetch tickets for each user by name
+                int totalTickets = userTickets.Count;
 
-            // Populate the ListView with btnUser information
-            for (int i = 0; i < allUsers.Count; i++)
-            {
-                var user = allUsers[i];
-
-                int totalTickets = user.Tickets.Count;
-
-                // Assign a numerical ID based on the position in the list
-                int numericId = i + 1;
-
-                ListViewItem item = new ListViewItem(numericId.ToString()); // Numeric ID
+                ListViewItem item = new ListViewItem(user.Id.ToString());
                 item.SubItems.Add(user.FirstName);
                 item.SubItems.Add(user.LastName);
                 item.SubItems.Add(user.Email);
-                item.SubItems.Add(totalTickets.ToString());
+                item.SubItems.Add(totalTickets.ToString()); // Add ticket count
 
                 listViewUsers.Items.Add(item);
             }

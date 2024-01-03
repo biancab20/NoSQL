@@ -47,5 +47,10 @@ namespace Logic
         {
             ticketDAO.UpdateTicket(ticketId, updateDefinition);
         }
+
+        public List<Ticket> GetTicketsByUsername(string username)
+        {
+            return ticketDAO.GetTicketsByUsername(username);
+        }
     }
 }
