@@ -163,6 +163,27 @@ namespace DemoApp
             // Update the ListView with filtered users
             PopulateListViewWithUsers(filteredUsers);
         }
+
+        private void deleteUser_Click(object sender, EventArgs e)
+        {
+            if (listViewUsers.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Please select a user to delete.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var selectedUserItem = listViewUsers.SelectedItems[0];
+            string userId = selectedUserItem.SubItems[0].Text; // Assuming the first subitem is the user ID
+            string userName = $"{selectedUserItem.SubItems[1].Text} {selectedUserItem.SubItems[2].Text}";
+
+            DialogResult dialogResult = MessageBox.Show($"Are you sure you want to delete this user ({userName})?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (dialogResult == DialogResult.Yes)
+            {
+                userService.DeleteUser(userId);
+                MessageBox.Show("User deleted successfully.", "User Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadAllUsers();
+            }
+        }
     }
 
 }

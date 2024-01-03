@@ -40,6 +40,7 @@
             this.incident = new System.Windows.Forms.Button();
             this.dashboard = new System.Windows.Forms.Button();
             this.TheGardenGroup_Logo = new System.Windows.Forms.PictureBox();
+            this.deleteUser = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.TheGardenGroup_Logo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -149,11 +150,22 @@
             this.TheGardenGroup_Logo.TabIndex = 21;
             this.TheGardenGroup_Logo.TabStop = false;
             // 
+            // deleteUser
+            // 
+            this.deleteUser.Location = new System.Drawing.Point(508, 141);
+            this.deleteUser.Name = "deleteUser";
+            this.deleteUser.Size = new System.Drawing.Size(157, 47);
+            this.deleteUser.TabIndex = 22;
+            this.deleteUser.Text = "Delete User";
+            this.deleteUser.UseVisualStyleBackColor = true;
+            this.deleteUser.Click += new System.EventHandler(this.deleteUser_Click);
+            // 
             // UserManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(847, 530);
+            this.Controls.Add(this.deleteUser);
             this.Controls.Add(this.TheGardenGroup_Logo);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
@@ -186,5 +198,6 @@
         private System.Windows.Forms.Button incident;
         private System.Windows.Forms.Button dashboard;
         private System.Windows.Forms.PictureBox TheGardenGroup_Logo;
+        private System.Windows.Forms.Button deleteUser;
     }
 }
