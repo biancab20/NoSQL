@@ -197,22 +197,22 @@ namespace DemoApp
 
         private void buttonUpdateTicket_Click(object sender, EventArgs e)
         {
+
             try
             {
                 if (CheckForm())
                 {
-                    Ticket updatedTicket = new Ticket();
-
-                    //
-                    updatedTicket.Subject = textBoxSubject.Text;
-                    updatedTicket.IncidentType = (IncidentType)Enum.Parse(typeof(IncidentType), comboBoxIncidentType.SelectedItem.ToString());
+                    // Prepare the updated ticket information
+                    var updateDefinition = Builders<Ticket>.Update
+                        .Set(t => t.Subject, textBoxSubject.Text)
+                        .Set(t => t.IncidentType, (IncidentType)Enum.Parse(typeof(IncidentType), comboBoxIncidentType.SelectedItem.ToString()));
                     
-                    //
 
-                    //ticketService.UpdateTicket(ticketToUpdate.ObjectId.ToString(), updatedTicket);
+            ticketService.UpdateTicket(ticketToUpdate.ObjectId.ToString(), updateDefinition);
 
                     MessageBox.Show("Ticket has been updated!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                    // Refresh the ListView in the main form
                     this.Hide();
                     ViewTicket viewticket = new ViewTicket(loggedInUser);
                     viewticket.ShowDialog();

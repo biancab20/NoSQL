@@ -224,10 +224,8 @@ namespace DemoApp
                 //LoadAllTickets();
 
                 AddIncident addIncidentForm = new AddIncident(loggedInUser, selectedTicket);
-                addIncidentForm.FormClosed += (s, args) => this.Close();
+                addIncidentForm.FormClosed += (s, args) => LoadAllTickets();
                 addIncidentForm.ShowDialog();
-
-
             }
            
         }
