@@ -31,6 +31,9 @@ namespace Model
 
         [BsonIgnoreIfNull]
         public List<Ticket> Tickets { get; set; }
-     
+
+        [BsonIgnoreIfNull]
+        public List<ObjectId> TicketIds { get; set; }  // Store ObjectIds of Ticket documents
     }
+
 }

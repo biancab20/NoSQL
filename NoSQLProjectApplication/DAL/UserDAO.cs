@@ -27,8 +27,10 @@ namespace DAL
        
         public List<User> GetAllUsers()
         {
-            return users.Find(_ => true).ToList();
+            //return users.Find(_ => true).ToList();
+            return users.Find(_ => true).Project<User>(Builders<User>.Projection.Exclude(u => u.Tickets)).ToList();
         }
+
         public void CreateUser(User user)
         {
             users.InsertOne(user);
