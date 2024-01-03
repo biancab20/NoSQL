@@ -105,10 +105,10 @@ namespace DemoApp
             listViewTickets.Items.Clear();
 
             // Populate based on btnUser role
-            PopulateListViewWithTickets(allTickets, loggedInUser.Role.ToString(), loggedInUser.Username);
+            PopulateListViewWithTickets(allTickets, loggedInUser.Role.ToString(), $"{loggedInUser.FirstName} {loggedInUser.LastName}");
         }
 
-        private void PopulateListViewWithTickets(List<Ticket> tickets, string userRole, string currentUsername)
+        private void PopulateListViewWithTickets(List<Ticket> tickets, string userRole, string userFirstLastName)
         {
             listViewTickets.Items.Clear();
 
@@ -135,7 +135,7 @@ namespace DemoApp
 
                         listViewTickets.Items.Add(item);
                     }
-                    else if (userRole == "Other" && ticket.ReportedByUser == currentUsername)
+                    else if (userRole == "Other" && ticket.ReportedByUser == userFirstLastName)
                     {
                         int numericId = i + 1;
 
@@ -146,6 +146,8 @@ namespace DemoApp
                         item.SubItems.Add(ticket.Description);
                         item.SubItems.Add(ticket.DeadlineFollowUp.ToString("yyyy-MM-dd HH:mm:ss"));
                         item.SubItems.Add(ticket.Status.ToString());
+
+                        item.Tag = ticket.ObjectId.ToString();
 
                         listViewTickets.Items.Add(item);
                     }
