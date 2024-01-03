@@ -99,7 +99,6 @@ namespace DemoApp
 
         private void LoadAllTickets()
         {
-
             allTickets = ticketService.GetAllTicket();
 
             listViewTickets.Items.Clear();
@@ -153,7 +152,6 @@ namespace DemoApp
             }
         }
 
-
         private void btnSearch_Click(object sender, EventArgs e)
         {
             string searchQuery = txtSearch.Text.ToLower();
@@ -195,6 +193,11 @@ namespace DemoApp
 
                 ticketService.DeleteTicket(ticketId);
                 MessageBox.Show("Ticket has been deleted!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadAllTickets();
+            }
+            else
+            {
+                MessageBox.Show("TicketID not selected!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -210,12 +213,16 @@ namespace DemoApp
                 {
                     AddIncident addIncidentForm = new AddIncident(loggedInUser, selectedTicket);
                     addIncidentForm.ShowDialog();
+                    LoadAllTickets();
                 }
                 else
                 {
                     MessageBox.Show("Ticket not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                
+            }
+            else
+            {
+                MessageBox.Show("TicketID not selected!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

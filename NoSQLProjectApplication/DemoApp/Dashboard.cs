@@ -61,7 +61,7 @@ namespace DemoApp
         {
             this.Hide();
             UserManagement userManagement = new UserManagement(loggedInUser);
-            userManagement.Show();
+            userManagement.ShowDialog();
             this.Close();
         }
     }
