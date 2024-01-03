@@ -22,14 +22,14 @@ namespace DemoApp
         private TicketFilterService ticketFilterService;
         private User loggedInUser;
 
-
-
         private void StyleServiceDesk()
         {
             btnUser.Visible = true;
             buttonDeleteIncident.Visible = true;
             buttonUpdateIncident.Visible = true;
-            btnAddIncident.Visible = false;
+            //btnAddIncident.Visible = false;
+            btnSearch.Visible = true;
+            txtSearch.Visible = true;
         }
 
         private void StyleOther()
@@ -37,7 +37,9 @@ namespace DemoApp
             btnUser.Visible = false;
             buttonDeleteIncident.Visible = false;
             buttonUpdateIncident.Visible = false;
-            btnAddIncident.Visible = true;
+            //btnAddIncident.Visible = true;
+            btnSearch.Visible = false;
+            txtSearch.Visible = false;
         }
 
         public ViewTicket(User user)
@@ -191,11 +193,7 @@ namespace DemoApp
 
         private void btnAddIncident_Click(object sender, EventArgs e)
         {
-            //this.Hide();
-            //AddIncident addIncident = new AddIncident(loggedInUser);
-            //addIncident.ShowDialog();
-            //this.Close();
-
+            this.Hide();
             AddIncident addIncident = new AddIncident(loggedInUser);
             addIncident.FormClosed += (s, args) => LoadAllTickets();
             addIncident.ShowDialog();
@@ -223,20 +221,16 @@ namespace DemoApp
             {
                 string ticketId = listViewTickets.SelectedItems[0].Tag.ToString();
 
-           
-
                 Ticket selectedTicket = ticketService.GetTicketById(ticketId);
-
-
-                //AddIncident addIncidentForm = new AddIncident(loggedInUser, selectedTicket);
-                //addIncidentForm.ShowDialog();
-                //LoadAllTickets();
 
                 AddIncident addIncidentForm = new AddIncident(loggedInUser, selectedTicket);
                 addIncidentForm.FormClosed += (s, args) => LoadAllTickets();
                 addIncidentForm.ShowDialog();
             }
-           
+            else
+            {
+                MessageBox.Show("TicketID not selected!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

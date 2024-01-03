@@ -32,17 +32,11 @@ namespace DemoApp
             if (loggedInUser.Role == Role.ServiceDesk)
             {
                 StyleServiceDesk();
-
-               // this.ticketToUpdate = ticketToUpdate;
-
-               // PopulateFormForUpdate(ticketToUpdate);
             }
             else
             {
                 StyleOther();
             }
-
-            //ticketService = new TicketService();
         }
 
         public AddIncident(User user, Ticket ticketToUpdate) :this(user)
@@ -52,11 +46,15 @@ namespace DemoApp
             if (this.ticketToUpdate != null)
             {
                 PopulateFormForUpdate(this.ticketToUpdate);
+                buttonUpdateTicket.Visible = true;
+                buttonSubmitTicket.Visible = false;
+                comboBoxTicketStatus.Visible = true;
+                labelTicketStatus.Visible = true;
             }
             else
             {
                 MessageBox.Show("Ticket data is not available.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.Close(); // Close the form or handle the null case appropriately
+                this.Close();
             }
         }
 
@@ -65,9 +63,10 @@ namespace DemoApp
             labelTopic.Text = "Update incident ticket";
             textBoxReportedByUser.ReadOnly = false;
             labelTicketStatus.Visible = true;
-            comboBoxTicketStatus.Visible = true;
-            buttonUpdateTicket.Visible = true;
-            buttonSubmitTicket.Visible = false;
+            comboBoxTicketStatus.Visible = false;
+            labelTicketStatus.Visible = false;
+            buttonUpdateTicket.Visible = false;
+            buttonSubmitTicket.Visible = true;
             buttonUserManagement.Visible = true;
         }
 
@@ -132,7 +131,7 @@ namespace DemoApp
                     ticket.Subject = textBoxSubject.Text;
                     ticket.IncidentType = (IncidentType)comboBoxIncidentType.SelectedIndex;
                     ticket.ReportedByUser = textBoxReportedByUser.Text;
-                    ticket.Priority = (Priority)comboBoxPriority.SelectedIndex;
+                    ticket.Priority = (Priority)comboBoxPriority.SelectedIndex + 1;
                     ticket.DeadlineFollowUp = dateTimePickerDeadlineFollowUp.Value;
                     ticket.Description = textBoxDescription.Text;
                     ticket.Status = TicketStatus.Unresolved;
