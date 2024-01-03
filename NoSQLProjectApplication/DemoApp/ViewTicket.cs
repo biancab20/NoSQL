@@ -1,5 +1,6 @@
 ﻿using Logic;
 using Model;
+using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -207,23 +208,22 @@ namespace DemoApp
             {
                 string ticketId = listViewTickets.SelectedItems[0].Tag.ToString();
 
-                Ticket selectedTicket = ticketService.GetTicketByUserId(ticketId);
+           
 
-                if (selectedTicket != null)
-                {
-                    AddIncident addIncidentForm = new AddIncident(loggedInUser, selectedTicket);
-                    addIncidentForm.ShowDialog();
-                    LoadAllTickets();
-                }
-                else
-                {
-                    MessageBox.Show("Ticket not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                Ticket selectedTicket = ticketService.GetTicketById(ticketId);
+
+
+                //AddIncident addIncidentForm = new AddIncident(loggedInUser, selectedTicket);
+                //addIncidentForm.ShowDialog();
+                //LoadAllTickets();
+
+                AddIncident addIncidentForm = new AddIncident(loggedInUser, selectedTicket);
+                addIncidentForm.FormClosed += (s, args) => this.Close();
+                addIncidentForm.ShowDialog();
+
+
             }
-            else
-            {
-                MessageBox.Show("TicketID not selected!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+           
         }
     }
 }

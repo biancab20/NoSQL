@@ -32,21 +32,31 @@ namespace DemoApp
             {
                 StyleServiceDesk();
 
-                this.ticketToUpdate = ticketToUpdate;
+               // this.ticketToUpdate = ticketToUpdate;
 
-                PopulateFormForUpdate(ticketToUpdate);
+               // PopulateFormForUpdate(ticketToUpdate);
             }
             else
             {
                 StyleOther();
             }
 
-            ticketService = new TicketService();
+            //ticketService = new TicketService();
         }
 
         public AddIncident(User user, Ticket ticketToUpdate) :this(user)
         {
             this.ticketToUpdate = ticketToUpdate;
+
+            if (this.ticketToUpdate != null)
+            {
+                PopulateFormForUpdate(this.ticketToUpdate);
+            }
+            else
+            {
+                MessageBox.Show("Ticket data is not available.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close(); // Close the form or handle the null case appropriately
+            }
         }
 
         private void StyleServiceDesk()
