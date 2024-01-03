@@ -102,13 +102,14 @@ namespace DemoApp
         {
             allTickets = ticketService.GetAllTicket();
 
-            listViewTickets.Items.Clear();
+            //listViewTickets.Items.Clear();
+            ticketFilterService = new TicketFilterService(allTickets);
 
             // Populate based on btnUser role
-            PopulateListViewWithTickets(allTickets, loggedInUser.Role.ToString(), loggedInUser.Username);
+            PopulateListViewWithTickets(allTickets, loggedInUser.Role.ToString(), $"{loggedInUser.FirstName} {loggedInUser.LastName}");
         }
 
-        private void PopulateListViewWithTickets(List<Ticket> tickets, string userRole, string currentUsername)
+        private void PopulateListViewWithTickets(List<Ticket> tickets, string userRole, string userFirstLastName)
         {
             listViewTickets.Items.Clear();
 
@@ -135,7 +136,7 @@ namespace DemoApp
 
                         listViewTickets.Items.Add(item);
                     }
-                    else if (userRole == "Other" && ticket.ReportedByUser == currentUsername)
+                    else if (userRole == "Other" && ticket.ReportedByUser == userFirstLastName)
                     {
                         int numericId = i + 1;
 
@@ -147,6 +148,8 @@ namespace DemoApp
                         item.SubItems.Add(ticket.DeadlineFollowUp.ToString("yyyy-MM-dd HH:mm:ss"));
                         item.SubItems.Add(ticket.Status.ToString());
 
+                        item.Tag = ticket.ObjectId.ToString();
+
                         listViewTickets.Items.Add(item);
                     }
                 }
@@ -155,11 +158,19 @@ namespace DemoApp
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            string searchQuery = txtSearch.Text.ToLower();
+            string searchQuery = txtSearch.Text.ToLower().Trim();
 
-            List<Ticket> filteredTickets = ticketFilterService.FilterTickets(searchQuery, loggedInUser.Role.ToString(), loggedInUser.Username);
-
-            PopulateListViewWithTickets(filteredTickets, loggedInUser.Role.ToString(), loggedInUser.Username);
+            if (string.IsNullOrEmpty(searchQuery))
+            {
+                // If the search query is empty, load all tickets
+                LoadAllTickets();
+            }
+            else
+            {
+                // If there is a search query, filter the tickets
+                List<Ticket> filteredTickets = ticketFilterService.FilterTickets(searchQuery, loggedInUser.Role.ToString(), $"{loggedInUser.FirstName} {loggedInUser.LastName}");
+                PopulateListViewWithTickets(filteredTickets, loggedInUser.Role.ToString(), loggedInUser.Username);
+            }
         }
 
         private void user_Click(object sender, EventArgs e)
@@ -180,10 +191,14 @@ namespace DemoApp
 
         private void btnAddIncident_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            //this.Hide();
+            //AddIncident addIncident = new AddIncident(loggedInUser);
+            //addIncident.ShowDialog();
+            //this.Close();
+
             AddIncident addIncident = new AddIncident(loggedInUser);
+            addIncident.FormClosed += (s, args) => LoadAllTickets();
             addIncident.ShowDialog();
-            this.Close();
         }
 
         private void buttonDeleteIncident_Click(object sender, EventArgs e)
@@ -218,10 +233,8 @@ namespace DemoApp
                 //LoadAllTickets();
 
                 AddIncident addIncidentForm = new AddIncident(loggedInUser, selectedTicket);
-                addIncidentForm.FormClosed += (s, args) => this.Close();
+                addIncidentForm.FormClosed += (s, args) => LoadAllTickets();
                 addIncidentForm.ShowDialog();
-
-
             }
            
         }
