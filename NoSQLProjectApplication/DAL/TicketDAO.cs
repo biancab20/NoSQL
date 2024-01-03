@@ -69,5 +69,11 @@ namespace DAL
 
             return result.DeletedCount > 0;
         }
+
+        public List<Ticket> GetTicketsByUsername(string username)
+        {
+            var filter = Builders<Ticket>.Filter.Eq("reported_by_user", username);
+            return tickets.Find(filter).ToList();
+        }
     }
 }
