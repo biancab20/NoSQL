@@ -32,17 +32,11 @@ namespace DemoApp
             if (loggedInUser.Role == Role.ServiceDesk)
             {
                 StyleServiceDesk();
-
-               // this.ticketToUpdate = ticketToUpdate;
-
-               // PopulateFormForUpdate(ticketToUpdate);
             }
             else
             {
                 StyleOther();
             }
-
-            //ticketService = new TicketService();
         }
 
         public AddIncident(User user, Ticket ticketToUpdate) :this(user)
@@ -56,7 +50,7 @@ namespace DemoApp
             else
             {
                 MessageBox.Show("Ticket data is not available.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.Close(); // Close the form or handle the null case appropriately
+                this.Close();
             }
         }
 
@@ -132,7 +126,7 @@ namespace DemoApp
                     ticket.Subject = textBoxSubject.Text;
                     ticket.IncidentType = (IncidentType)comboBoxIncidentType.SelectedIndex;
                     ticket.ReportedByUser = textBoxReportedByUser.Text;
-                    ticket.Priority = (Priority)comboBoxPriority.SelectedIndex;
+                    ticket.Priority = (Priority)comboBoxPriority.SelectedIndex + 1;
                     ticket.DeadlineFollowUp = dateTimePickerDeadlineFollowUp.Value;
                     ticket.Description = textBoxDescription.Text;
                     ticket.Status = TicketStatus.Unresolved;
