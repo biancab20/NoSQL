@@ -57,6 +57,7 @@ namespace DemoApp
             comboBoxTicketStatus.Visible = true;
             buttonUpdateTicket.Visible = true;
             buttonSubmitTicket.Visible = false;
+            buttonUserManagement.Visible = true;
         }
 
         private void StyleOther()
@@ -67,6 +68,7 @@ namespace DemoApp
             comboBoxTicketStatus.Visible = false;
             buttonUpdateTicket.Visible = false;
             buttonSubmitTicket.Visible = true;
+            buttonUserManagement.Visible = false;
         }
 
         private void FillBoxesData()
