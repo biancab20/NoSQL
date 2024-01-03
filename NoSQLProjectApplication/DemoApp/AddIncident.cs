@@ -86,7 +86,7 @@ namespace DemoApp
                 comboBoxTicketStatus.Items.Add(Enum.GetName(typeof(TicketStatus), status));
             }
 
-            textBoxReportedByUser.Text = loggedInUser.FirstName;
+            textBoxReportedByUser.Text = $"{loggedInUser.FirstName} {loggedInUser.LastName}";
         }
 
         private void ClearFormData()
