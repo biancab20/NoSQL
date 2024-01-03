@@ -13,36 +13,56 @@ namespace Logic
 
         public TicketFilterService(List<Ticket> tickets)
         {
-            allTickets = tickets;
+            allTickets = tickets ?? new List<Ticket>();
         }
 
         public List<Ticket> FilterTickets(string searchQuery, string userRole, string currentUsername)
         {
-            string[] searchWords = searchQuery.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            //if (allTickets == null || !allTickets.Any())
+            //{
+            //    return new List<Ticket>(); // Return an empty list if there are no tickets
+            //}
 
-            List<Ticket> filteredTickets = allTickets
+            //string[] searchWords = searchQuery.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+            //List<Ticket> filteredTickets = allTickets
+            //    .Where(ticket => IsTicketVisible(ticket, searchWords, userRole, currentUsername))
+            //    .OrderByDescending(ticket => ticket.DeadlineFollowUp)
+            //    .ToList();
+
+            //return filteredTickets;
+
+            string[] searchWords = searchQuery.ToLower().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+            return allTickets
                 .Where(ticket => IsTicketVisible(ticket, searchWords, userRole, currentUsername))
                 .OrderByDescending(ticket => ticket.DeadlineFollowUp)
                 .ToList();
 
-            return filteredTickets;
         }
 
         private bool IsTicketVisible(Ticket ticket, string[] searchWords, string userRole, string currentUsername)
         {
-            if (ticket != null && ticket.Subject != null)
+            if (ticket == null)
             {
-                bool matchesSearch = searchWords.All(word =>
-                    ticket.Subject.ToLower().Contains(word) || ticket.Description.ToLower().Contains(word)
-                );
-
-                if (userRole == "ServiceDesk" || (userRole == "Other" && ticket.ReportedByUser == currentUsername))
-                {
-                    return matchesSearch;
-                }
+                return false;
             }
 
-            return false;
+            bool matchesSearch = searchWords.Any(word =>
+                (ticket.Subject != null && ticket.Subject.ToLower().Contains(word)) ||
+                (ticket.Description != null && ticket.Description.ToLower().Contains(word)) ||
+                (ticket.ReportedByUser != null && ticket.ReportedByUser.ToLower().Contains(word)) ||
+                ticket.Priority.ToString().ToLower().Contains(word) || 
+                ticket.Status.ToString().ToLower().Contains(word)    
+            );
+
+         
+            if (userRole == "ServiceDesk")
+            {
+                return matchesSearch;
+            }
+
+            return matchesSearch && ticket.ReportedByUser.Equals(currentUsername, StringComparison.OrdinalIgnoreCase);
         }
     }
 }
