@@ -42,16 +42,9 @@ namespace DAL
         }
         public void UpdatePassword(string userEmail,string updatePassword)
         {
-            //var filter = Builders<User>.Filter.Eq(u => u.Email, userEmail);
-            //var user = users.Find(filter).FirstOrDefault();
-            //var updatedUserPassword = Builders<BsonDocument>.Update.Set("password", Hash(updatePassword));
-            //users.UpdateOne(s => s.Password == ObjectId.Parse (updatedUserPassword));
-
             var filter = Builders<User>.Filter.Eq(u => u.Email, userEmail);
             var update = Builders<User>.Update.Set(u => u.Password, Hash(updatePassword));
             var result = users.UpdateOne(filter, update);
-
-
         }
         public void DeleteUser(string userId)
         {
@@ -61,7 +54,7 @@ namespace DAL
         public string Hash(string password)
         {
             var sha = SHA256.Create();
-
+            
             var asByteArray = Encoding.Default.GetBytes(password);
             var hashedPassword = sha.ComputeHash(asByteArray);
 
@@ -72,6 +65,7 @@ namespace DAL
             var filter = Builders<User>.Filter.Eq(u => u.Username, username);
             return users.Find(filter).FirstOrDefault();
         }
+
         public User GetUserByPassword(string password)
         {
             
@@ -79,6 +73,28 @@ namespace DAL
 
             var filter = Builders<User>.Filter.Eq(u => u.Password, hashedPasscode);
             return users.Find(filter).FirstOrDefault();
+        }
+        public void StorePasswordResetToken(string email, string resetToken)
+        {
+            var passwordResetTokensCollection = database.GetCollection<BsonDocument>("ResetPasswordTokens");
+
+            var tokenDocument = new BsonDocument
+            {
+                { "Email", email },
+                { "ResetToken", resetToken },
+                { "ExpiryTime", DateTime.UtcNow.AddHours(2) }
+            };
+
+            passwordResetTokensCollection.InsertOne(tokenDocument);
+        }
+        public bool VerifyResetToken(string email, string token)
+        {
+            var passwordResetTokensCollection = database.GetCollection<BsonDocument>("ResetPasswordTokens");
+
+            var filter = Builders<BsonDocument>.Filter.Eq("Email", email) & Builders<BsonDocument>.Filter.Eq("ResetToken", token);
+            var tokenDocument = passwordResetTokensCollection.Find(filter).FirstOrDefault();
+
+            return tokenDocument != null;
         }
     }
 }
