@@ -46,34 +46,54 @@ namespace DemoApp
 
         private void LoadAllUsers()
         {
-            // Get all users from the service
-            allUsers = userService.GetAllUsers();
+            //// Get all users from the service
+            //allUsers = userService.GetAllUsers();
 
+            //TicketService ticketService = new TicketService();
+
+            //// Clear existing items in ListView
+            //listViewUsers.Items.Clear();
+
+            //foreach (var user in allUsers)
+            //{
+            //    user.Tickets = ticketService.GetTicketsByUserId(user.Id.ToString());
+            //}
+
+            //// Populate the ListView with btnUser information
+            //for (int i = 0; i < allUsers.Count; i++)
+            //{
+            //    var user = allUsers[i];
+
+            //    int totalTickets = user.Tickets.Count;
+
+            //    // Assign a numerical ID based on the position in the list
+            //    int numericId = i + 1;
+
+            //    ListViewItem item = new ListViewItem(numericId.ToString()); // Numeric ID
+            //    item.SubItems.Add(user.FirstName);
+            //    item.SubItems.Add(user.LastName);
+            //    item.SubItems.Add(user.Email);
+            //    item.SubItems.Add(totalTickets.ToString());
+
+            //    listViewUsers.Items.Add(item);
+            //}
+
+            allUsers = userService.GetAllUsers();
             TicketService ticketService = new TicketService();
 
-            // Clear existing items in ListView
             listViewUsers.Items.Clear();
 
             foreach (var user in allUsers)
             {
-                user.Tickets = ticketService.GetTicketsByUserId(user.Id.ToString());
-            }
+                string userFullName = $"{user.FirstName} {user.LastName}";
+                var userTickets = ticketService.GetTicketsByUsername(userFullName); // Fetch tickets for each user by name
+                int totalTickets = userTickets.Count;
 
-            // Populate the ListView with btnUser information
-            for (int i = 0; i < allUsers.Count; i++)
-            {
-                var user = allUsers[i];
-
-                int totalTickets = user.Tickets.Count;
-
-                // Assign a numerical ID based on the position in the list
-                int numericId = i + 1;
-
-                ListViewItem item = new ListViewItem(numericId.ToString()); // Numeric ID
+                ListViewItem item = new ListViewItem(user.Id.ToString());
                 item.SubItems.Add(user.FirstName);
                 item.SubItems.Add(user.LastName);
                 item.SubItems.Add(user.Email);
-                item.SubItems.Add(totalTickets.ToString());
+                item.SubItems.Add(totalTickets.ToString()); // Add ticket count
 
                 listViewUsers.Items.Add(item);
             }
@@ -142,6 +162,27 @@ namespace DemoApp
 
             // Update the ListView with filtered users
             PopulateListViewWithUsers(filteredUsers);
+        }
+
+        private void deleteUser_Click(object sender, EventArgs e)
+        {
+            if (listViewUsers.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Please select a user to delete.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var selectedUserItem = listViewUsers.SelectedItems[0];
+            string userId = selectedUserItem.SubItems[0].Text; // Assuming the first subitem is the user ID
+            string userName = $"{selectedUserItem.SubItems[1].Text} {selectedUserItem.SubItems[2].Text}";
+
+            DialogResult dialogResult = MessageBox.Show($"Are you sure you want to delete this user ({userName})?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (dialogResult == DialogResult.Yes)
+            {
+                userService.DeleteUser(userId);
+                MessageBox.Show("User deleted successfully.", "User Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadAllUsers();
+            }
         }
     }
 

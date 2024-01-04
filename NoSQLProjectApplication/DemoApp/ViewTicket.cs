@@ -1,5 +1,6 @@
 ﻿using Logic;
 using Model;
+using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,14 +22,14 @@ namespace DemoApp
         private TicketFilterService ticketFilterService;
         private User loggedInUser;
 
-
-
         private void StyleServiceDesk()
         {
             btnUser.Visible = true;
             buttonDeleteIncident.Visible = true;
             buttonUpdateIncident.Visible = true;
-            btnAddIncident.Visible = false;
+            //btnAddIncident.Visible = false;
+            btnSearch.Visible = true;
+            txtSearch.Visible = true;
         }
 
         private void StyleOther()
@@ -36,7 +37,9 @@ namespace DemoApp
             btnUser.Visible = false;
             buttonDeleteIncident.Visible = false;
             buttonUpdateIncident.Visible = false;
-            btnAddIncident.Visible = true;
+            //btnAddIncident.Visible = true;
+            btnSearch.Visible = false;
+            txtSearch.Visible = false;
         }
 
         public ViewTicket(User user)
@@ -99,16 +102,16 @@ namespace DemoApp
 
         private void LoadAllTickets()
         {
-
             allTickets = ticketService.GetAllTicket();
 
-            listViewTickets.Items.Clear();
+            //listViewTickets.Items.Clear();
+            ticketFilterService = new TicketFilterService(allTickets);
 
             // Populate based on btnUser role
-            PopulateListViewWithTickets(allTickets, loggedInUser.Role.ToString(), loggedInUser.Username);
+            PopulateListViewWithTickets(allTickets, loggedInUser.Role.ToString(), $"{loggedInUser.FirstName} {loggedInUser.LastName}");
         }
 
-        private void PopulateListViewWithTickets(List<Ticket> tickets, string userRole, string currentUsername)
+        private void PopulateListViewWithTickets(List<Ticket> tickets, string userRole, string userFirstLastName)
         {
             listViewTickets.Items.Clear();
 
@@ -135,7 +138,7 @@ namespace DemoApp
 
                         listViewTickets.Items.Add(item);
                     }
-                    else if (userRole == "Other" && ticket.ReportedByUser == currentUsername)
+                    else if (userRole == "Other" && ticket.ReportedByUser == userFirstLastName)
                     {
                         int numericId = i + 1;
 
@@ -147,20 +150,29 @@ namespace DemoApp
                         item.SubItems.Add(ticket.DeadlineFollowUp.ToString("yyyy-MM-dd HH:mm:ss"));
                         item.SubItems.Add(ticket.Status.ToString());
 
+                        item.Tag = ticket.ObjectId.ToString();
+
                         listViewTickets.Items.Add(item);
                     }
                 }
             }
         }
 
-
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            string searchQuery = txtSearch.Text.ToLower();
+            string searchQuery = txtSearch.Text.ToLower().Trim();
 
-            List<Ticket> filteredTickets = ticketFilterService.FilterTickets(searchQuery, loggedInUser.Role.ToString(), loggedInUser.Username);
-
-            PopulateListViewWithTickets(filteredTickets, loggedInUser.Role.ToString(), loggedInUser.Username);
+            if (string.IsNullOrEmpty(searchQuery))
+            {
+                // If the search query is empty, load all tickets
+                LoadAllTickets();
+            }
+            else
+            {
+                // If there is a search query, filter the tickets
+                List<Ticket> filteredTickets = ticketFilterService.FilterTickets(searchQuery, loggedInUser.Role.ToString(), $"{loggedInUser.FirstName} {loggedInUser.LastName}");
+                PopulateListViewWithTickets(filteredTickets, loggedInUser.Role.ToString(), loggedInUser.Username);
+            }
         }
 
         private void user_Click(object sender, EventArgs e)
@@ -183,8 +195,8 @@ namespace DemoApp
         {
             this.Hide();
             AddIncident addIncident = new AddIncident(loggedInUser);
+            addIncident.FormClosed += (s, args) => LoadAllTickets();
             addIncident.ShowDialog();
-            this.Close();
         }
 
         private void buttonDeleteIncident_Click(object sender, EventArgs e)
@@ -195,6 +207,11 @@ namespace DemoApp
 
                 ticketService.DeleteTicket(ticketId);
                 MessageBox.Show("Ticket has been deleted!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadAllTickets();
+            }
+            else
+            {
+                MessageBox.Show("TicketID not selected!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -204,18 +221,15 @@ namespace DemoApp
             {
                 string ticketId = listViewTickets.SelectedItems[0].Tag.ToString();
 
-                Ticket selectedTicket = ticketService.GetTicketByUserId(ticketId);
+                Ticket selectedTicket = ticketService.GetTicketById(ticketId);
 
-                if (selectedTicket != null)
-                {
-                    AddIncident addIncidentForm = new AddIncident(loggedInUser, selectedTicket);
-                    addIncidentForm.ShowDialog();
-                }
-                else
-                {
-                    MessageBox.Show("Ticket not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                
+                AddIncident addIncidentForm = new AddIncident(loggedInUser, selectedTicket);
+                addIncidentForm.FormClosed += (s, args) => LoadAllTickets();
+                addIncidentForm.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("TicketID not selected!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

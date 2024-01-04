@@ -58,12 +58,7 @@ namespace DemoApp
                 {
                     if (user.Password == userService.Hash(password))
                         return user;
-                    //User userByPassword = userService.GetUserByPassword(password);
 
-                    //if (userByPassword != null && user.Password == userByPassword.Password)
-                    //{
-                    //    return user;
-                    //}
                     else
                     {
                         MessageBox.Show("Incorrect password. Please try again!", "Message", MessageBoxButtons.OK);
@@ -76,7 +71,7 @@ namespace DemoApp
             }
             catch
             {
-                MessageBox.Show("An error occurred. Please try again later.", "Message", MessageBoxButtons.OK);
+                MessageBox.Show("The user does not exist. Check if the username and password are correct.", "Message", MessageBoxButtons.OK);
             }
 
             return null;
@@ -101,7 +96,6 @@ namespace DemoApp
                 catch(Exception ex) 
                 {
                     MessageBox.Show(ex.ToString());
-                  //  MessageBox.Show("An error occurred. Please try again later.", "Message", MessageBoxButtons.OK);
                 }
 
             }

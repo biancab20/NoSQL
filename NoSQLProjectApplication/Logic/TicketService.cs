@@ -33,9 +33,9 @@ namespace Logic
             return GetAllTicket().Where(ticket => ticket.AssignedUserId == userId).ToList();
         }
 
-        public Ticket GetTicketByUserId(string userId)
+        public Ticket GetTicketById(string ticketId)
         {
-            return GetAllTicket().FirstOrDefault(ticket => ticket.AssignedUserId == userId);
+            return GetAllTicket().FirstOrDefault(ticket => ticket.ObjectId.ToString() == ticketId);
         }
 
         public bool DeleteTicket(string ticketId) 
@@ -46,6 +46,11 @@ namespace Logic
         public void UpdateTicket(string ticketId, UpdateDefinition<Ticket> updateDefinition) 
         {
             ticketDAO.UpdateTicket(ticketId, updateDefinition);
+        }
+
+        public List<Ticket> GetTicketsByUsername(string username)
+        {
+            return ticketDAO.GetTicketsByUsername(username);
         }
     }
 }

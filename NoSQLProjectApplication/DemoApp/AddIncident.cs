@@ -25,28 +25,37 @@ namespace DemoApp
         {
             InitializeComponent();
             loggedInUser = user;
+            ticketService = new TicketService();
             ClearFormData();
             FillBoxesData();
 
             if (loggedInUser.Role == Role.ServiceDesk)
             {
                 StyleServiceDesk();
-
-                this.ticketToUpdate = ticketToUpdate;
-
-                PopulateFormForUpdate(ticketToUpdate);
             }
             else
             {
                 StyleOther();
             }
-
-            ticketService = new TicketService();
         }
 
         public AddIncident(User user, Ticket ticketToUpdate) :this(user)
         {
             this.ticketToUpdate = ticketToUpdate;
+
+            if (this.ticketToUpdate != null)
+            {
+                PopulateFormForUpdate(this.ticketToUpdate);
+                buttonUpdateTicket.Visible = true;
+                buttonSubmitTicket.Visible = false;
+                comboBoxTicketStatus.Visible = true;
+                labelTicketStatus.Visible = true;
+            }
+            else
+            {
+                MessageBox.Show("Ticket data is not available.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+            }
         }
 
         private void StyleServiceDesk()
@@ -54,9 +63,11 @@ namespace DemoApp
             labelTopic.Text = "Update incident ticket";
             textBoxReportedByUser.ReadOnly = false;
             labelTicketStatus.Visible = true;
-            comboBoxTicketStatus.Visible = true;
-            buttonUpdateTicket.Visible = true;
-            buttonSubmitTicket.Visible = false;
+            comboBoxTicketStatus.Visible = false;
+            labelTicketStatus.Visible = false;
+            buttonUpdateTicket.Visible = false;
+            buttonSubmitTicket.Visible = true;
+            buttonUserManagement.Visible = true;
         }
 
         private void StyleOther()
@@ -67,6 +78,7 @@ namespace DemoApp
             comboBoxTicketStatus.Visible = false;
             buttonUpdateTicket.Visible = false;
             buttonSubmitTicket.Visible = true;
+            buttonUserManagement.Visible = false;
         }
 
         private void FillBoxesData()
@@ -84,7 +96,7 @@ namespace DemoApp
                 comboBoxTicketStatus.Items.Add(Enum.GetName(typeof(TicketStatus), status));
             }
 
-            textBoxReportedByUser.Text = loggedInUser.FirstName;
+            textBoxReportedByUser.Text = $"{loggedInUser.FirstName} {loggedInUser.LastName}";
         }
 
         private void ClearFormData()
@@ -119,7 +131,7 @@ namespace DemoApp
                     ticket.Subject = textBoxSubject.Text;
                     ticket.IncidentType = (IncidentType)comboBoxIncidentType.SelectedIndex;
                     ticket.ReportedByUser = textBoxReportedByUser.Text;
-                    ticket.Priority = (Priority)comboBoxPriority.SelectedIndex;
+                    ticket.Priority = (Priority)comboBoxPriority.SelectedIndex + 1;
                     ticket.DeadlineFollowUp = dateTimePickerDeadlineFollowUp.Value;
                     ticket.Description = textBoxDescription.Text;
                     ticket.Status = TicketStatus.Unresolved;
@@ -146,7 +158,13 @@ namespace DemoApp
         private void PopulateFormForUpdate(Ticket ticket)
         {
             textBoxSubject.Text = ticket.Subject;
+            textBoxDescription.Text = ticket.Description;
             comboBoxIncidentType.SelectedItem = ticket.IncidentType.ToString();
+            comboBoxPriority.SelectedItem = ticket.Priority.ToString();
+            dateTimePickerReported.Value = ticket.DateTimeReported;
+            dateTimePickerDeadlineFollowUp.Value = ticket.DeadlineFollowUp;
+            comboBoxTicketStatus.SelectedItem = ticket.Status.ToString();
+            textBoxReportedByUser.Text = ticket.ReportedByUser;
         }
 
         private bool CheckForm()
@@ -188,21 +206,18 @@ namespace DemoApp
             {
                 if (CheckForm())
                 {
-                    Ticket updatedTicket = new Ticket();
+                    var updateDefinition = Builders<Ticket>.Update
+                        .Set(t => t.Subject, textBoxSubject.Text)
+                        .Set(t => t.Description, textBoxDescription.Text)
+                        .Set(t => t.IncidentType, (IncidentType)Enum.Parse(typeof(IncidentType), comboBoxIncidentType.SelectedItem.ToString()))
+                        .Set(t => t.Priority, (Priority)Enum.Parse(typeof(Priority), comboBoxPriority.SelectedItem.ToString()))
+                        .Set(t => t.DeadlineFollowUp, dateTimePickerDeadlineFollowUp.Value)
+                        .Set(t => t.Status, (TicketStatus)Enum.Parse(typeof(TicketStatus), comboBoxTicketStatus.SelectedItem.ToString()));
 
-                    //
-                    updatedTicket.Subject = textBoxSubject.Text;
-                    updatedTicket.IncidentType = (IncidentType)Enum.Parse(typeof(IncidentType), comboBoxIncidentType.SelectedItem.ToString());
-                    
-                    //
-
-                    //ticketService.UpdateTicket(ticketToUpdate.ObjectId.ToString(), updatedTicket);
+                    ticketService.UpdateTicket(ticketToUpdate.ObjectId.ToString(), updateDefinition);
 
                     MessageBox.Show("Ticket has been updated!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    this.Hide();
-                    ViewTicket viewticket = new ViewTicket(loggedInUser);
-                    viewticket.ShowDialog();
                     this.Close();
                 }
                 else
