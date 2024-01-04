@@ -110,6 +110,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DashboardService.cs" />
     <Compile Include="Databases.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TicketFilterService.cs" />
