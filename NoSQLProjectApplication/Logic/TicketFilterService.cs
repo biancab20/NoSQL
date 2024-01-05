@@ -18,19 +18,6 @@ namespace Logic
 
         public List<Ticket> FilterTickets(string searchQuery, string userRole, string currentUsername)
         {
-            //if (allTickets == null || !allTickets.Any())
-            //{
-            //    return new List<Ticket>(); // Return an empty list if there are no tickets
-            //}
-
-            //string[] searchWords = searchQuery.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-
-            //List<Ticket> filteredTickets = allTickets
-            //    .Where(ticket => IsTicketVisible(ticket, searchWords, userRole, currentUsername))
-            //    .OrderByDescending(ticket => ticket.DeadlineFollowUp)
-            //    .ToList();
-
-            //return filteredTickets;
 
             string[] searchWords = searchQuery.ToLower().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 

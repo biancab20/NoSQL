@@ -46,37 +46,6 @@ namespace DemoApp
 
         private void LoadAllUsers()
         {
-            //// Get all users from the service
-            //allUsers = userService.GetAllUsers();
-
-            //TicketService ticketService = new TicketService();
-
-            //// Clear existing items in ListView
-            //listViewUsers.Items.Clear();
-
-            //foreach (var user in allUsers)
-            //{
-            //    user.Tickets = ticketService.GetTicketsByUserId(user.Id.ToString());
-            //}
-
-            //// Populate the ListView with btnUser information
-            //for (int i = 0; i < allUsers.Count; i++)
-            //{
-            //    var user = allUsers[i];
-
-            //    int totalTickets = user.Tickets.Count;
-
-            //    // Assign a numerical ID based on the position in the list
-            //    int numericId = i + 1;
-
-            //    ListViewItem item = new ListViewItem(numericId.ToString()); // Numeric ID
-            //    item.SubItems.Add(user.FirstName);
-            //    item.SubItems.Add(user.LastName);
-            //    item.SubItems.Add(user.Email);
-            //    item.SubItems.Add(totalTickets.ToString());
-
-            //    listViewUsers.Items.Add(item);
-            //}
 
             allUsers = userService.GetAllUsers();
             TicketService ticketService = new TicketService();
@@ -112,17 +81,16 @@ namespace DemoApp
 
         private void PopulateListViewWithUsers(List<User> users)
         {
-            // Clear existing items in ListView
+           
             listViewUsers.Items.Clear();
 
-            // Populate the ListView with btnUser information
             foreach (var user in users)
             {
-                ListViewItem item = new ListViewItem(user.Id.ToString()); // Numeric ID
+                ListViewItem item = new ListViewItem(user.Id.ToString());
                 item.SubItems.Add(user.FirstName);
                 item.SubItems.Add(user.LastName);
                 item.SubItems.Add(user.Email);
-                item.SubItems.Add(user.Tickets.Count.ToString()); // Assuming Ticket is an int property
+                item.SubItems.Add(user.Tickets.Count.ToString()); 
 
                 listViewUsers.Items.Add(item);
             }
@@ -163,7 +131,7 @@ namespace DemoApp
             }
 
             var selectedUserItem = listViewUsers.SelectedItems[0];
-            string userId = selectedUserItem.SubItems[0].Text; // Assuming the first subitem is the user ID
+            string userId = selectedUserItem.SubItems[0].Text; 
             string userName = $"{selectedUserItem.SubItems[1].Text} {selectedUserItem.SubItems[2].Text}";
 
             DialogResult dialogResult = MessageBox.Show($"Are you sure you want to delete this user ({userName})?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
