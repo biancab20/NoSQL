@@ -26,7 +26,7 @@ namespace Logic
             {
                 { TicketStatus.Unresolved.ToString(), CalculateStatusPercentage(tickets, TicketStatus.Unresolved) },
                 { TicketStatus.InProgress.ToString(), CalculateStatusPercentage(tickets, TicketStatus.InProgress) },
-                { TicketStatus.Transferred.ToString(), CalculateStatusPercentage(tickets, TicketStatus.Transferred) },               
+                { TicketStatus.Solved.ToString(), CalculateStatusPercentage(tickets, TicketStatus.Solved) },               
             };
 
             return statusPercentages;
@@ -42,4 +42,3 @@ namespace Logic
 
     }
 }
-
