@@ -50,11 +50,11 @@
             this.chartUnresolved = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label1 = new System.Windows.Forms.Label();
             this.chartInProgress = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.chartTransferred = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chartSolved = new System.Windows.Forms.DataVisualization.Charting.Chart();
             ((System.ComponentModel.ISupportInitialize)(this.TheGardenGroup_Logo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartUnresolved)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartInProgress)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chartTransferred)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartSolved)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -179,36 +179,36 @@
             title2.Text = "InProgress Incidents";
             this.chartInProgress.Titles.Add(title2);
             // 
-            // chartTransferred
+            // chartSolved
             // 
             chartArea3.Name = "ChartArea1";
-            this.chartTransferred.ChartAreas.Add(chartArea3);
+            this.chartSolved.ChartAreas.Add(chartArea3);
             legend3.Alignment = System.Drawing.StringAlignment.Center;
             legend3.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
             legend3.Name = "Legend1";
-            this.chartTransferred.Legends.Add(legend3);
-            this.chartTransferred.Location = new System.Drawing.Point(468, 146);
-            this.chartTransferred.Name = "chartTransferred";
-            this.chartTransferred.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.SeaGreen;
+            this.chartSolved.Legends.Add(legend3);
+            this.chartSolved.Location = new System.Drawing.Point(468, 146);
+            this.chartSolved.Name = "chartSolved";
+            this.chartSolved.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.SeaGreen;
             series3.ChartArea = "ChartArea1";
             series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
             series3.Legend = "Legend1";
             series3.Name = "Solved";
-            this.chartTransferred.Series.Add(series3);
-            this.chartTransferred.Size = new System.Drawing.Size(153, 159);
-            this.chartTransferred.TabIndex = 25;
-            this.chartTransferred.Text = "Solved";
+            this.chartSolved.Series.Add(series3);
+            this.chartSolved.Size = new System.Drawing.Size(153, 159);
+            this.chartSolved.TabIndex = 25;
+            this.chartSolved.Text = "Solved";
             title3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            title3.Name = "Transferred Tickets";
-            title3.Text = "Transferred Tickets";
-            this.chartTransferred.Titles.Add(title3);
+            title3.Name = "Solved Tickets";
+            title3.Text = "Solved Tickets";
+            this.chartSolved.Titles.Add(title3);
             // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(647, 357);
-            this.Controls.Add(this.chartTransferred);
+            this.Controls.Add(this.chartSolved);
             this.Controls.Add(this.chartInProgress);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.chartUnresolved);
@@ -224,7 +224,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.TheGardenGroup_Logo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartUnresolved)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartInProgress)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chartTransferred)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartSolved)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -240,7 +240,7 @@
         private System.Windows.Forms.PictureBox TheGardenGroup_Logo;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartInProgress;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chartTransferred;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartSolved;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartUnresolved;
     }
 }
