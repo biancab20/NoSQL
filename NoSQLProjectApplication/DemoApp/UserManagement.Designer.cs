@@ -31,9 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserManagement));
             this.listViewUsers = new System.Windows.Forms.ListView();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtFilterByEmail = new System.Windows.Forms.TextBox();
             this.btnAddUser = new System.Windows.Forms.Button();
-            this.btnFilterByEmail = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.user = new System.Windows.Forms.Button();
@@ -63,13 +61,6 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "User Management";
             // 
-            // txtFilterByEmail
-            // 
-            this.txtFilterByEmail.Location = new System.Drawing.Point(22, 164);
-            this.txtFilterByEmail.Name = "txtFilterByEmail";
-            this.txtFilterByEmail.Size = new System.Drawing.Size(156, 22);
-            this.txtFilterByEmail.TabIndex = 2;
-            // 
             // btnAddUser
             // 
             this.btnAddUser.Location = new System.Drawing.Point(671, 141);
@@ -79,16 +70,6 @@
             this.btnAddUser.Text = "Add User";
             this.btnAddUser.UseVisualStyleBackColor = true;
             this.btnAddUser.Click += new System.EventHandler(this.btnAddUser_Click_1);
-            // 
-            // btnFilterByEmail
-            // 
-            this.btnFilterByEmail.Location = new System.Drawing.Point(193, 162);
-            this.btnFilterByEmail.Name = "btnFilterByEmail";
-            this.btnFilterByEmail.Size = new System.Drawing.Size(75, 26);
-            this.btnFilterByEmail.TabIndex = 4;
-            this.btnFilterByEmail.Text = "Search";
-            this.btnFilterByEmail.UseVisualStyleBackColor = true;
-            this.btnFilterByEmail.Click += new System.EventHandler(this.btnFilterByEmail_Click_1);
             // 
             // label2
             // 
@@ -172,9 +153,7 @@
             this.Controls.Add(this.user);
             this.Controls.Add(this.incident);
             this.Controls.Add(this.dashboard);
-            this.Controls.Add(this.btnFilterByEmail);
             this.Controls.Add(this.btnAddUser);
-            this.Controls.Add(this.txtFilterByEmail);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listViewUsers);
             this.Name = "UserManagement";
@@ -189,9 +168,7 @@
 
         private System.Windows.Forms.ListView listViewUsers;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtFilterByEmail;
         private System.Windows.Forms.Button btnAddUser;
-        private System.Windows.Forms.Button btnFilterByEmail;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button user;

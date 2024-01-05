@@ -154,16 +154,6 @@ namespace DemoApp
             this.Close();
         }
 
-        private void btnFilterByEmail_Click_1(object sender, EventArgs e)
-        {
-            // Filter users by email
-            string filterEmail = txtFilterByEmail.Text.Trim().ToLower();
-            List<User> filteredUsers = allUsers.FindAll(user => user.Email.ToLower().Contains(filterEmail));
-
-            // Update the ListView with filtered users
-            PopulateListViewWithUsers(filteredUsers);
-        }
-
         private void deleteUser_Click(object sender, EventArgs e)
         {
             if (listViewUsers.SelectedItems.Count == 0)
